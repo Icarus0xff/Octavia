@@ -135,6 +135,30 @@ home/augustus/Source/cpu_emulator/src/address.cc.s:
 	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/address.cc.s
 .PHONY : home/augustus/Source/cpu_emulator/src/address.cc.s
 
+home/augustus/Source/cpu_emulator/src/cmodel.o: home/augustus/Source/cpu_emulator/src/cmodel.cc.o
+.PHONY : home/augustus/Source/cpu_emulator/src/cmodel.o
+
+# target to build an object file
+home/augustus/Source/cpu_emulator/src/cmodel.cc.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/cmodel.cc.o
+.PHONY : home/augustus/Source/cpu_emulator/src/cmodel.cc.o
+
+home/augustus/Source/cpu_emulator/src/cmodel.i: home/augustus/Source/cpu_emulator/src/cmodel.cc.i
+.PHONY : home/augustus/Source/cpu_emulator/src/cmodel.i
+
+# target to preprocess a source file
+home/augustus/Source/cpu_emulator/src/cmodel.cc.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/cmodel.cc.i
+.PHONY : home/augustus/Source/cpu_emulator/src/cmodel.cc.i
+
+home/augustus/Source/cpu_emulator/src/cmodel.s: home/augustus/Source/cpu_emulator/src/cmodel.cc.s
+.PHONY : home/augustus/Source/cpu_emulator/src/cmodel.s
+
+# target to generate assembly for a file
+home/augustus/Source/cpu_emulator/src/cmodel.cc.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/cmodel.cc.s
+.PHONY : home/augustus/Source/cpu_emulator/src/cmodel.cc.s
+
 home/augustus/Source/cpu_emulator/src/cpu_loop.o: home/augustus/Source/cpu_emulator/src/cpu_loop.cc.o
 .PHONY : home/augustus/Source/cpu_emulator/src/cpu_loop.o
 
@@ -387,6 +411,9 @@ help:
 	@echo "... home/augustus/Source/cpu_emulator/src/address.o"
 	@echo "... home/augustus/Source/cpu_emulator/src/address.i"
 	@echo "... home/augustus/Source/cpu_emulator/src/address.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/cmodel.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/cmodel.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/cmodel.s"
 	@echo "... home/augustus/Source/cpu_emulator/src/cpu_loop.o"
 	@echo "... home/augustus/Source/cpu_emulator/src/cpu_loop.i"
 	@echo "... home/augustus/Source/cpu_emulator/src/cpu_loop.s"

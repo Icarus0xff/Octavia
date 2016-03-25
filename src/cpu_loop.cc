@@ -1,4 +1,6 @@
 #include "global.h"
+#include "cmodel.hh"
+
 //main cpu loop
 void cpu_loop(){
   int i=5;
@@ -9,7 +11,8 @@ void cpu_loop(){
     if(prefix_2byte)
       dec_opcode_2byte_run();
     else
-      dec_opcode_run();
+      //dec_opcode_run();
+      opcode_run();
     print();
     if(*curInst==0xC9) break;  //leave instruciton as an end
   }
