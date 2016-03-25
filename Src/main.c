@@ -19,19 +19,19 @@
   u_int8_t instLen = 0;
   u_int8_t reg1 = 0, reg2 = 0;
   u_int8_t rm_is_reg = 0;
-  Bit16u eAddr16 = 0;
-  Bit32u eAddr32 = 0;
+  u_int16_t eAddr16 = 0;
+  u_int32_t eAddr32 = 0;
   u_int8_t eAddr_sreg = 0;
-  Bit32u linear_addr = 0;
+  u_int32_t linear_addr = 0;
 
   Reg greg[8] = {0};
   u_int8_t immLen = 0;
   u_int8_t cpl = 0;
   Sreg ldtr = {0}, tr = {0};
   GlobalSreg gdtr = {0}, idtr = {0};
-  Bit32u eflags = 0;
-  Bit32u cr[5] = {0};
-Bit32u dr[8] = {0};
+  u_int32_t eflags = 0;
+  u_int32_t cr[5] = {0};
+u_int32_t dr[8] = {0};
 
 int main(){
   init();

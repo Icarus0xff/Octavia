@@ -1,6 +1,6 @@
 #include "global.h"
 void dec_opcode_run(){
-	Bit8u nojmp=1;
+	u_int8_t nojmp=1;
 	instLen=immLen=0;
 	switch(*curInst){
 		// bcd conversion instruction
@@ -39,11 +39,11 @@ void dec_opcode_run(){
         case 0x3D://CMP AX/EAX,imm16/imm32
 			if(operand_size()==16){
 				immLen=2;
-				AX=exec_arith_16b((*curInst&38)>>3,AX,*(Bit16u*)(curInst+1));
+				AX=exec_arith_16b((*curInst&38)>>3,AX,*(u_int16_t*)(curInst+1));
 			}
 			else {
 				immLen=4;
-				EAX=exec_arith_32b((*curInst&38)>>3,EAX,*(Bit32u*)(curInst+1));
+				EAX=exec_arith_32b((*curInst&38)>>3,EAX,*(u_int32_t*)(curInst+1));
 			}
 			break;
 		case 0x00: //ADD r/m8,r8
@@ -56,11 +56,11 @@ void dec_opcode_run(){
         case 0x38: //CMP r/m8,r8
 			dec_modrm();
 			if(rm_is_reg){
-				Bit8u tmp=exec_arith_8b((*curInst&38)>>3,read8BitReg(reg2),read8BitReg(reg1));
+				u_int8_t tmp=exec_arith_8b((*curInst&38)>>3,read8BitReg(reg2),read8BitReg(reg1));
 				write8BitReg(reg2,tmp);
 				break;
 			} else{
-				Bit8u *data=(Bit8u*)get_mem_data();
+				u_int8_t *data=(u_int8_t*)get_mem_data();
 				*data=exec_arith_8b((*curInst&38)>>3,*data,read8BitReg(reg1));
 				break;
 			}
@@ -75,21 +75,21 @@ void dec_opcode_run(){
 			dec_modrm();
 			if(operand_size()==16){
 				if(rm_is_reg){
-					Bit16u tmp=exec_arith_16b((*curInst&38)>>3,read16BitReg(reg2),read16BitReg(reg1));
+					u_int16_t tmp=exec_arith_16b((*curInst&38)>>3,read16BitReg(reg2),read16BitReg(reg1));
 					write16BitReg(reg2,tmp);
 					break;
 				} else{
-					Bit16u* data=(Bit16u*)get_mem_data();
+					u_int16_t* data=(u_int16_t*)get_mem_data();
 					*data=exec_arith_16b((*curInst&38)>>3,*data,read16BitReg(reg1));
 				}
 			}
 			else {
 				if(rm_is_reg){
-					Bit32u tmp=exec_arith_32b((*curInst&38)>>3,read32BitReg(reg2),read32BitReg(reg1));
+					u_int32_t tmp=exec_arith_32b((*curInst&38)>>3,read32BitReg(reg2),read32BitReg(reg1));
 					write32BitReg(reg2,tmp);
 					break;
 				}else{
-					Bit32u* data=(Bit32u*)get_mem_data();
+					u_int32_t* data=(u_int32_t*)get_mem_data();
 					*data=exec_arith_32b((*curInst&38)>>3,*data,read32BitReg(reg1));
 				}
 			}
@@ -104,12 +104,12 @@ void dec_opcode_run(){
 		case 0x3A: //CMP r8,r/m8
 			dec_modrm();
 			{
-				Bit8u src;
+				u_int8_t src;
 				if(rm_is_reg==0){
-					src=*(Bit8u*)get_mem_data();
+					src=*(u_int8_t*)get_mem_data();
 				}
 				else src=read8BitReg(reg2);
-				Bit8u tmp=exec_arith_8b((*curInst&38)>>3,read8BitReg(reg1),src);
+				u_int8_t tmp=exec_arith_8b((*curInst&38)>>3,read8BitReg(reg1),src);
 				write8BitReg(reg1,tmp);
 			}
 			break;
@@ -123,32 +123,32 @@ void dec_opcode_run(){
 		case 0x3B: //CMP r16/32,r/m16/32
 			dec_modrm();
 			if(operand_size()==16){
-				Bit16u src;
+				u_int16_t src;
 				if(rm_is_reg==0){
-					src=*(Bit16u*)get_mem_data();
+					src=*(u_int16_t*)get_mem_data();
 				}
 				else src=read16BitReg(reg2);
-				Bit16u tmp=exec_arith_16b((*curInst&38)>>3,read8BitReg(reg1),src);
+				u_int16_t tmp=exec_arith_16b((*curInst&38)>>3,read8BitReg(reg1),src);
 				write16BitReg(reg1,tmp);
 			}
 			else {
-				Bit32u src;
+				u_int32_t src;
 				if(rm_is_reg==0){
-					src=*(Bit32u*)get_mem_data();
+					src=*(u_int32_t*)get_mem_data();
 				}
 				else src=read32BitReg(reg2);
-				Bit32u tmp=exec_arith_32b((*curInst&38)>>3,read32BitReg(reg1),src);
+				u_int32_t tmp=exec_arith_32b((*curInst&38)>>3,read32BitReg(reg1),src);
 				write32BitReg(reg1,tmp);
 			}
 			break;
 		case 0x80:  //arith op
 			immLen=1;
 			if(rm_is_reg){
-				Bit8u tmp=exec_arith_8b(reg1,read8BitReg(reg2),*(curInst+1+instLen));
+				u_int8_t tmp=exec_arith_8b(reg1,read8BitReg(reg2),*(curInst+1+instLen));
 				write8BitReg(reg2,tmp);
 				break;
 			} else{
-				Bit8u *data=(Bit8u*)get_mem_data();
+				u_int8_t *data=(u_int8_t*)get_mem_data();
 				*data=exec_arith_8b((*curInst&38)>>3,*data,*(curInst+1+instLen));
 				break;
 			}
@@ -157,23 +157,23 @@ void dec_opcode_run(){
 			if(operand_size()==16){
 				immLen=2;
 				if(rm_is_reg){
-					Bit16u tmp=exec_arith_16b(reg1,read16BitReg(reg2),*(Bit16u*)(curInst+1+instLen));
+					u_int16_t tmp=exec_arith_16b(reg1,read16BitReg(reg2),*(u_int16_t*)(curInst+1+instLen));
 					write16BitReg(reg2,tmp);
 					break;
 				}
-				Bit16u* data=(Bit16u*)get_mem_data();
-				*data=exec_arith_16b(reg1,*data,*(Bit16u*)(curInst+1+instLen));
+				u_int16_t* data=(u_int16_t*)get_mem_data();
+				*data=exec_arith_16b(reg1,*data,*(u_int16_t*)(curInst+1+instLen));
 			}
 			else {
 				immLen=4;
 				if(rm_is_reg){
-					Bit32u tmp=exec_arith_32b(reg1,read32BitReg(reg2),*(Bit32u*)(curInst+1+instLen));
+					u_int32_t tmp=exec_arith_32b(reg1,read32BitReg(reg2),*(u_int32_t*)(curInst+1+instLen));
 					write32BitReg(reg2,tmp);
 					break;
 				}
 				//
-				Bit32u* data=(Bit32u*)get_mem_data();
-				*data=exec_arith_32b(reg1,*data,*(Bit32u*)(curInst+1+instLen));
+				u_int32_t* data=(u_int32_t*)get_mem_data();
+				*data=exec_arith_32b(reg1,*data,*(u_int32_t*)(curInst+1+instLen));
 			}
 			break;
         case 0x83://arith op
@@ -182,33 +182,33 @@ void dec_opcode_run(){
 				immLen=1;
 				Bit16s imm=*(Bit8s*)(curInst+1+instLen);
 				if(rm_is_reg){
-					Bit16u tmp=exec_arith_16b(reg1,read16BitReg(reg2),imm);
+					u_int16_t tmp=exec_arith_16b(reg1,read16BitReg(reg2),imm);
 					write16BitReg(reg2,tmp);
 					break;
 				}
-				Bit16u *data=(Bit16u*)get_mem_data();
+				u_int16_t *data=(u_int16_t*)get_mem_data();
 				*data=exec_arith_16b(reg1,*data,imm);
 			}
 			else {
 				immLen=1;
 				Bit32s imm=*(Bit8s*)(curInst+1+instLen);
 				if(rm_is_reg){
-					Bit32u tmp=exec_arith_32b(reg1,read32BitReg(reg2),imm);
+					u_int32_t tmp=exec_arith_32b(reg1,read32BitReg(reg2),imm);
 					write32BitReg(reg2,tmp);
 					break;
 				}
-				Bit32u *data=(Bit32u*)get_mem_data();
+				u_int32_t *data=(u_int32_t*)get_mem_data();
 				*data=exec_arith_32b(reg1,*data,imm);
 			}
 			break;
 		case 0x63://arpl
 			dec_modrm();
 			if(rm_is_reg){
-				Bit16u tmp=exec_arpl(read8BitReg(reg2),read8BitReg(reg1));
+				u_int16_t tmp=exec_arpl(read8BitReg(reg2),read8BitReg(reg1));
 				write8BitReg(reg2,tmp);
 				break;
 			} else{
-				Bit8u *data=(Bit8u*)get_mem_data();
+				u_int8_t *data=(u_int8_t*)get_mem_data();
 				*data=exec_arpl(*data,read8BitReg(reg1));
 				break;
 			}
@@ -218,7 +218,7 @@ void dec_opcode_run(){
 				printf("#UD exception\n");
 				exit(0);
 			} else{
-				Bit8u *data=(Bit8u*)get_mem_data();
+				u_int8_t *data=(u_int8_t*)get_mem_data();
 				if(operand_size()==16)
 					exec_bound_16b((Bit16s*)data,(Bit16s)read16BitReg(reg1));
 				else
@@ -243,7 +243,7 @@ void dec_opcode_run(){
                             push_16b(read16BitReg(reg2));
                         }
                         else{
-                            Bit16u* data=(Bit16u*)get_mem_data();
+                            u_int16_t* data=(u_int16_t*)get_mem_data();
                             push_16b(*data);
                         }
                     }
@@ -252,7 +252,7 @@ void dec_opcode_run(){
                             push_32b(read32BitReg(reg2));
                         }
                         else{
-                            Bit32u* data=(Bit32u*)get_mem_data();
+                            u_int32_t* data=(u_int32_t*)get_mem_data();
                             push_32b(*data);
                         }
                     }
@@ -293,7 +293,7 @@ void dec_opcode_run(){
             break;
         case 0xC8://ENTER
             immLen=3;
-            exec_enter(*(Bit16u*)(curInst+1),*(curInst+3));
+            exec_enter(*(u_int16_t*)(curInst+1),*(curInst+3));
             break;
         case 0xF4://HLT
             if(REAL_MODE||cpl==0){
@@ -331,12 +331,12 @@ void dec_opcode_run(){
                 case 0://pop
                 {
                     if(operand_size()==16){
-                        Bit16u* data =(Bit16u*)get_mem_data();
+                        u_int16_t* data =(u_int16_t*)get_mem_data();
                         *data=pop_16b();
                     }
                     else
                     {
-                        Bit32u* data =(Bit32u*)get_mem_data();
+                        u_int32_t* data =(u_int32_t*)get_mem_data();
                         *data=pop_32b();
                     }
                     break;
@@ -390,12 +390,12 @@ void dec_opcode_run(){
             if(operand_size()==16)
             {
                 immLen=2;
-                push_16b(*(Bit16u*)(curInst+1+instLen));
+                push_16b(*(u_int16_t*)(curInst+1+instLen));
             }
             else
             {
                 immLen=4;
-                push_32b(*(Bit32u*)(curInst+1+instLen));
+                push_32b(*(u_int32_t*)(curInst+1+instLen));
             }
             break;
         case 0x60://PUSHA/PUSHAD
@@ -454,8 +454,8 @@ void dec_opcode_run(){
             break;
         case 0x8B://mov  r16/32,r/m
             dec_modrm();
-            if(operand_size()==16) exec_mov_16b_2reg(*(Bit16u*)get_mem_data(),reg1);
-            else exec_mov_32b_2reg(*(Bit32u*)get_mem_data(),reg1);
+            if(operand_size()==16) exec_mov_16b_2reg(*(u_int16_t*)get_mem_data(),reg1);
+            else exec_mov_32b_2reg(*(u_int32_t*)get_mem_data(),reg1);
             break;
         case 0x8C://mov r/m16,Sreg
             dec_modrm();
@@ -467,30 +467,30 @@ void dec_opcode_run(){
             break;
         case 0xA0: //mov al,seg:ofset
             immLen=address_size()/8;
-            if(address_size()==16)     linear_addr=translate_linear_addr(*(Bit16u*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
-            else   linear_addr=translate_linear_addr(*(Bit32u*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
+            if(address_size()==16)     linear_addr=translate_linear_addr(*(u_int16_t*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
+            else   linear_addr=translate_linear_addr(*(u_int32_t*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
             exec_mov_8b_2reg(*get_mem_data(),0);
             break;
         case 0xA1://mov ax/eax,seg:offset
             immLen=address_size()/8;
-            if(address_size()==16)     linear_addr=translate_linear_addr(*(Bit16u*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
-            else   linear_addr=translate_linear_addr(*(Bit32u*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
+            if(address_size()==16)     linear_addr=translate_linear_addr(*(u_int16_t*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
+            else   linear_addr=translate_linear_addr(*(u_int32_t*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
             if(operand_size()==16){
-                exec_mov_16b_2reg(*(Bit16u*)get_mem_data(),0);
+                exec_mov_16b_2reg(*(u_int16_t*)get_mem_data(),0);
             }else{
-                exec_mov_32b_2reg(*(Bit32u*)get_mem_data(),0);
+                exec_mov_32b_2reg(*(u_int32_t*)get_mem_data(),0);
             }
             break;
         case 0xA2://mov seg:offset,al
               immLen=address_size()/8;
-            if(address_size()==16)     linear_addr=translate_linear_addr(*(Bit16u*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
-            else   linear_addr=translate_linear_addr(*(Bit32u*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
+            if(address_size()==16)     linear_addr=translate_linear_addr(*(u_int16_t*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
+            else   linear_addr=translate_linear_addr(*(u_int32_t*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
             exec_mov_8b_2rm(0);
             break;
         case 0xA3://mov seg:offset,AX/EAX
              immLen=address_size()/8;
-            if(address_size()==16)     linear_addr=translate_linear_addr(*(Bit16u*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
-            else   linear_addr=translate_linear_addr(*(Bit32u*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
+            if(address_size()==16)     linear_addr=translate_linear_addr(*(u_int16_t*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
+            else   linear_addr=translate_linear_addr(*(u_int32_t*)(curInst+1),prefix_seg==7?prefix_seg:SEG_REG_DS);
             if(operand_size()==16){
                 exec_mov_16b_2rm(0);
             }else{
@@ -514,8 +514,8 @@ void dec_opcode_run(){
             switch(reg1){
                 case 0://mov r/m16/32,imm
                     immLen=operand_size()/8;
-                    if(immLen==2) exec_mov_16b_2reg(*(Bit16u*)(curInst+1),*curInst&0x07);
-                    else exec_mov_32b_2reg(*(Bit32u*)(curInst+1),*curInst&0x07);
+                    if(immLen==2) exec_mov_16b_2reg(*(u_int16_t*)(curInst+1),*curInst&0x07);
+                    else exec_mov_32b_2reg(*(u_int32_t*)(curInst+1),*curInst&0x07);
                     break;
                 default:
                     printf("＃UD exception\n");
@@ -545,7 +545,7 @@ void dec_opcode_run(){
                          write8BitReg(reg2,exec_shift_8b(reg1,read8BitReg(reg2),1));
                     else
                     {
-                        Bit8u *data=get_mem_data();
+                        u_int8_t *data=get_mem_data();
                         *data=exec_shift_8b(reg1,*data,1);
                     }
                     break;
@@ -563,7 +563,7 @@ void dec_opcode_run(){
                          write8BitReg(reg2,exec_shift_8b(reg1,read8BitReg(reg2),CL));
                     else
                     {
-                        Bit8u *data=get_mem_data();
+                        u_int8_t *data=get_mem_data();
                         *data=exec_shift_8b(reg1,*data,CL);
                     }
                     break;
@@ -582,7 +582,7 @@ void dec_opcode_run(){
                          write8BitReg(reg2,exec_shift_8b(reg1,read8BitReg(reg2),*(curInst+1+instLen)));
                     else
                     {
-                        Bit8u *data=get_mem_data();
+                        u_int8_t *data=get_mem_data();
                         *data=exec_shift_8b(reg1,*data,*(curInst+1+instLen));
                     }
                     break;
@@ -601,7 +601,7 @@ void dec_opcode_run(){
                             write16BitReg(reg2,exec_shift_16b(reg1,read16BitReg(reg2),1));
                         else
                         {
-                            Bit16u *data=(Bit16u*)get_mem_data();
+                            u_int16_t *data=(u_int16_t*)get_mem_data();
                             *data=exec_shift_16b(reg1,*data,1);
                         }
                     }
@@ -610,7 +610,7 @@ void dec_opcode_run(){
                             write32BitReg(reg2,exec_shift_32b(reg1,read32BitReg(reg2),1));
                         else
                         {
-                            Bit32u *data=(Bit32u*)get_mem_data();
+                            u_int32_t *data=(u_int32_t*)get_mem_data();
                             *data=exec_shift_32b(reg1,*data,1);
                         }
                     }
@@ -630,7 +630,7 @@ void dec_opcode_run(){
                             write16BitReg(reg2,exec_shift_16b(reg1,read16BitReg(reg2),CL));
                         else
                         {
-                            Bit16u *data=(Bit16u*)get_mem_data();
+                            u_int16_t *data=(u_int16_t*)get_mem_data();
                             *data=exec_shift_16b(reg1,*data,CL);
                         }
                     }
@@ -639,7 +639,7 @@ void dec_opcode_run(){
                             write32BitReg(reg2,exec_shift_32b(reg1,read32BitReg(reg2),CL));
                         else
                         {
-                            Bit32u *data=(Bit32u*)get_mem_data();
+                            u_int32_t *data=(u_int32_t*)get_mem_data();
                             *data=exec_shift_32b(reg1,*data,CL);
                         }
                     }
@@ -660,7 +660,7 @@ void dec_opcode_run(){
                             write16BitReg(reg2,exec_shift_16b(reg1,read16BitReg(reg2),*(curInst+1+instLen)));
                         else
                         {
-                            Bit16u *data=(Bit16u*)get_mem_data();
+                            u_int16_t *data=(u_int16_t*)get_mem_data();
                             *data=exec_shift_16b(reg1,*data,*(curInst+1+instLen));
                         }
                     }
@@ -669,7 +669,7 @@ void dec_opcode_run(){
                             write32BitReg(reg2,exec_shift_32b(reg1,read32BitReg(reg2 ),*(curInst+1+instLen)));
                         else
                         {
-                            Bit32u *data=(Bit32u*)get_mem_data();
+                            u_int32_t *data=(u_int32_t*)get_mem_data();
                             *data=exec_shift_32b(reg1,*data,*(curInst+1+instLen));
                         }
                     }
@@ -718,12 +718,12 @@ void dec_opcode_run(){
             if(operand_size()==16)
             {
                 immLen=2;
-                exec_and_8b(AX,*(Bit16u*)(curInst+1));
+                exec_and_8b(AX,*(u_int16_t*)(curInst+1));
             }
 			else
 			{
                 immLen=4;
-                exec_and_32b(EAX,*(Bit32u*)(curInst+1));
+                exec_and_32b(EAX,*(u_int32_t*)(curInst+1));
 			}
 			 break;
         case 0xF6:
@@ -733,12 +733,12 @@ void dec_opcode_run(){
                     immLen=1;
                     if(rm_is_reg)
                     {
-                        Bit8u imm=*(Bit8u*)(curInst+1+instLen);
+                        u_int8_t imm=*(u_int8_t*)(curInst+1+instLen);
                         exec_and_8b(read8BitReg(reg1),imm);
                     }
                     else
                     {
-                        Bit8u imm=*(Bit8u*)(curInst+1+instLen);
+                        u_int8_t imm=*(u_int8_t*)(curInst+1+instLen);
                         exec_and_8b(*(get_mem_data()),imm);
                     }
                     break;
@@ -772,27 +772,27 @@ void dec_opcode_run(){
                     if(operand_size()==16)
                     {
                         immLen=2;
-                        Bit16u imm=*(Bit16u*)(curInst+1+instLen);
+                        u_int16_t imm=*(u_int16_t*)(curInst+1+instLen);
                         if(rm_is_reg)
                         {
                             exec_and_16b(read16BitReg(reg1),imm);
                         }
                         else
                         {
-                             exec_and_16b(*(Bit16u*)get_mem_data(),imm);
+                             exec_and_16b(*(u_int16_t*)get_mem_data(),imm);
                         }
                     }
                     else
                     {
                         immLen=4;
-                        Bit32u imm=*(Bit32u*)(curInst+1+instLen);
+                        u_int32_t imm=*(u_int32_t*)(curInst+1+instLen);
                         if(rm_is_reg)
                         {
                             exec_and_32b(read32BitReg(reg1),imm);
                         }
                         else
                         {
-                             exec_and_32b(*(Bit32u*)get_mem_data(),imm);
+                             exec_and_32b(*(u_int32_t*)get_mem_data(),imm);
                         }
                     }
                     break;
@@ -839,7 +839,7 @@ void dec_opcode_run(){
                 }
                 else
                 {
-                     exec_and_16b(read16BitReg(reg1),*(Bit16u*)get_mem_data());
+                     exec_and_16b(read16BitReg(reg1),*(u_int16_t*)get_mem_data());
                 }
             }
             else
@@ -850,7 +850,7 @@ void dec_opcode_run(){
                 }
                 else
                 {
-                     exec_and_32b(read32BitReg(reg1),*(Bit32u*)get_mem_data());
+                     exec_and_32b(read32BitReg(reg1),*(u_int32_t*)get_mem_data());
                 }
             }
              break;
@@ -893,8 +893,8 @@ void dec_opcode_run(){
                         break;
                     case 0xB8://mov reg16/32,imm
                         immLen=operand_size()/8;
-                        if(immLen==2) exec_mov_16b_2reg(*(Bit16u*)(curInst+1),*curInst&0x07);
-                        else exec_mov_32b_2reg(*(Bit32u*)(curInst+1),*curInst&0x07);
+                        if(immLen==2) exec_mov_16b_2reg(*(u_int16_t*)(curInst+1),*curInst&0x07);
+                        else exec_mov_32b_2reg(*(u_int32_t*)(curInst+1),*curInst&0x07);
                         break;
                     case 0x58://pop
                         if(operand_size()==16)
@@ -929,7 +929,7 @@ void dec_opcode_run(){
 }
 
 void dec_opcode_2byte_run(){
-	Bit8u nojmp=1;
+	u_int8_t nojmp=1;
 	instLen=immLen=0;
 	switch(*curInst){
 		case 0xBC://BSF
@@ -939,7 +939,7 @@ void dec_opcode_2byte_run(){
 					exec_bsf_16b(reg1,read16BitReg(reg2));
 					break;
 				}
-				Bit16u *data=(Bit16u*)get_mem_data();
+				u_int16_t *data=(u_int16_t*)get_mem_data();
 				exec_bsf_16b(reg1,*data);
 			}
 			else {
@@ -947,7 +947,7 @@ void dec_opcode_2byte_run(){
 					exec_bsf_32b(reg1,read32BitReg(reg2));
 					break;
 				}
-				Bit32u *data=(Bit32u*)get_mem_data();
+				u_int32_t *data=(u_int32_t*)get_mem_data();
 				exec_bsf_32b(reg1,*data);
 			}
 			break;
@@ -958,7 +958,7 @@ void dec_opcode_2byte_run(){
 					exec_bsr_16b(reg1,read16BitReg(reg2));
 					break;
 				}
-				Bit16u *data=(Bit16u*)get_mem_data();
+				u_int16_t *data=(u_int16_t*)get_mem_data();
 				exec_bsr_16b(reg1,*data);
 			}
 			else {
@@ -966,7 +966,7 @@ void dec_opcode_2byte_run(){
 					exec_bsr_32b(reg1,read32BitReg(reg2));
 					break;
 				}
-				Bit32u *data=(Bit32u*)get_mem_data();
+				u_int32_t *data=(u_int32_t*)get_mem_data();
 				exec_bsr_32b(reg1,*data);
 			}
 			break;
@@ -980,7 +980,7 @@ void dec_opcode_2byte_run(){
 					exec_btx_16b_reg((*curInst&0x38)>>3,reg2,read16BitReg(reg1));
 					break;
 				}
-				Bit8u *data=get_mem_data();
+				u_int8_t *data=get_mem_data();
 				exec_btx_mem((*curInst&0x38)>>3,data,(Bit16s)read16BitReg(reg1));
 			}
 			else {
@@ -988,7 +988,7 @@ void dec_opcode_2byte_run(){
 					exec_btx_32b_reg((*curInst&0x38)>>3,reg2,read32BitReg(reg1));
 					break;
 				}
-				Bit8u *data=get_mem_data();
+				u_int8_t *data=get_mem_data();
 				exec_btx_mem((*curInst&0x38)>>3,data,(Bit32s)read32BitReg(reg1));
 			}
 			break;
@@ -1000,7 +1000,7 @@ void dec_opcode_2byte_run(){
 					exec_btx_16b_reg(reg1,reg2,*(curInst+instLen+1));
 					break;
 				}
-				Bit8u *data=get_mem_data();
+				u_int8_t *data=get_mem_data();
 				exec_btx_mem(reg1,data,*(curInst+instLen+1));
 			}
 			else {
@@ -1008,7 +1008,7 @@ void dec_opcode_2byte_run(){
 					exec_btx_32b_reg(reg1,reg2,*(curInst+instLen+1));
 					break;
                 }
-				Bit8u *data=get_mem_data();
+				u_int8_t *data=get_mem_data();
 				exec_btx_mem(reg1,data,*(curInst+instLen+1));
 			}
 			break;
@@ -1067,7 +1067,7 @@ void dec_opcode_2byte_run(){
         case 0xA4: //SHLD
             immLen=1;
             {
-                Bit8u count =*(curInst+instLen+1);
+                u_int8_t count =*(curInst+instLen+1);
                 exec_shld(count);
             }
             break;
@@ -1077,7 +1077,7 @@ void dec_opcode_2byte_run(){
         case 0xAC: //SHRD
             immLen=1;
             {
-                Bit8u count =*(curInst+instLen+1);
+                u_int8_t count =*(curInst+instLen+1);
                 exec_shrd(count);
             }
             break;
@@ -1095,7 +1095,7 @@ void dec_opcode_2byte_run(){
                             write16BitReg(reg2,LDTR.selector);
                             break;
                         }
-                        Bit16u *data=(Bit16u*)get_mem_data();
+                        u_int16_t *data=(u_int16_t*)get_mem_data();
                         *data = LDTR.selector;
                         break;
                     }
@@ -1105,7 +1105,7 @@ void dec_opcode_2byte_run(){
                             write32BitReg(reg2,LDTR.selector);
                             break;
                         }
-                        Bit32u *data=(Bit32u*)get_mem_data();
+                        u_int32_t *data=(u_int32_t*)get_mem_data();
                         *data = LDTR.selector;
                         break;
                     }
@@ -1124,7 +1124,7 @@ void dec_opcode_2byte_run(){
                         }
                     }
                     {
-                        Bit16u *data=(Bit16u*)get_mem_data();
+                        u_int16_t *data=(u_int16_t*)get_mem_data();
                         *data = TR.selector;
                     }
                     break;
@@ -1144,34 +1144,34 @@ void dec_opcode_2byte_run(){
             switch(reg1){
                 case 0: //SGDT
                 {
-                    Bit16u *data=(Bit16u*)get_mem_data();
+                    u_int16_t *data=(u_int16_t*)get_mem_data();
                     *data=gdtr.limit;
                     if(operand_size()==16)
                     {
-                        Bit32u *baseadd=(Bit32u*)(data+1);
+                        u_int32_t *baseadd=(u_int32_t*)(data+1);
                         *baseadd=gdtr.base;
                         //the fourth byte is undefined
                     }
                     else
                     {
-                        Bit32u *baseadd=(Bit32u*)(data+1);
+                        u_int32_t *baseadd=(u_int32_t*)(data+1);
                         *baseadd=gdtr.base;
                     }
                     break;
                 }
                 case 1://SIDT
                 {
-                    Bit16u *data=(Bit16u*)get_mem_data();
+                    u_int16_t *data=(u_int16_t*)get_mem_data();
                     *data=idtr.limit;
                     if(operand_size()==16)
                     {
-                        Bit32u *baseadd=(Bit32u*)(data+1);
+                        u_int32_t *baseadd=(u_int32_t*)(data+1);
                         *baseadd=idtr.base;
                         //the fourth byte is undefined
                     }
                     else
                     {
-                        Bit32u *baseadd=(Bit32u*)(data+1);
+                        u_int32_t *baseadd=(u_int32_t*)(data+1);
                         *baseadd=idtr.base;
                     }
                     break;
@@ -1200,7 +1200,7 @@ void dec_opcode_2byte_run(){
                 break;
             }
             {
-                Bit8u *data=get_mem_data();
+                u_int8_t *data=get_mem_data();
 				*data = exec_xadd_8b(*data);
             }
             break;
@@ -1223,7 +1223,7 @@ void dec_opcode_2byte_run(){
                     write16BitReg(reg2,exec_xadd_16b(read16BitReg(reg2)));
 					break;
 				}
-				Bit16u *data=(Bit16u*)get_mem_data();
+				u_int16_t *data=(u_int16_t*)get_mem_data();
 				*data = exec_xadd_16b(*data);
 			}
 			else {
@@ -1231,7 +1231,7 @@ void dec_opcode_2byte_run(){
                     write32BitReg(reg2,exec_xadd_32b(read32BitReg(reg2)));
 					break;
 				}
-				Bit32u *data=(Bit32u*)get_mem_data();
+				u_int32_t *data=(u_int32_t*)get_mem_data();
 				*data = exec_xadd_32b(*data);
 			}
 			break;
@@ -1285,7 +1285,7 @@ void dec_opcode_2byte_run(){
                     }
                     else
                     {
-                        Bit8u *data=get_mem_data();
+                        u_int8_t *data=get_mem_data();
                         *data = 1;
                     }
                 }
@@ -1296,7 +1296,7 @@ void dec_opcode_2byte_run(){
                     }
                     else
                     {
-                        Bit8u *data=get_mem_data();
+                        u_int8_t *data=get_mem_data();
                         *data = 0;
                     }
                 }

@@ -19,8 +19,8 @@ void dec_modrm(){
 }
 void dec_modrm_16b(){
 	DEBUG("addressSize is 16bit\n");
-	Bit8u modrm,mod,rm;
-	Bit16u offset=0;
+	u_int8_t modrm,mod,rm;
+	u_int16_t offset=0;
 	modrm=*(curInst+1);
 	mod=modrm>>6;
 	reg1=(modrm&0x38)>>3;
@@ -37,7 +37,7 @@ void dec_modrm_16b(){
 				instLen=2;
 				break;
 			case 2:   //mod= 10, 16-bit displacement
-				offset=*(Bit16u*)(curInst+2);
+				offset=*(u_int16_t*)(curInst+2);
 				instLen=3;
 				break;
 			default:  //mod =00 ,no displacement
@@ -97,8 +97,8 @@ void dec_modrm_16b(){
 }
 void dec_modrm_32b(){
 	DEBUG("addressSize is 32bit\n");
-	Bit8u modrm,mod,rm;
-	Bit32u offset=0;
+	u_int8_t modrm,mod,rm;
+	u_int32_t offset=0;
 	modrm=*(curInst+1);
 	mod=modrm>>6;
 	reg1=(modrm&0x38)>>3;
@@ -115,7 +115,7 @@ void dec_modrm_32b(){
 				instLen=2;
 				break;
 			case 2:   //mod= 10, 32-bit displacement
-				offset=*(Bit32u*)(curInst+2);
+				offset=*(u_int32_t*)(curInst+2);
 				instLen=5;
 				break;
 			default:  //mod =00 ,no displacement
@@ -143,7 +143,7 @@ void dec_modrm_32b(){
 			case 5:
 				switch(mod){
 					case 0:   //
-		 				eAddr32=*(Bit32u*)(curInst+2);
+		 				eAddr32=*(u_int32_t*)(curInst+2);
 						instLen=5;
 						eAddr_sreg=SEG_REG_DS;
 						break;
@@ -176,9 +176,9 @@ void dec_modrm_32b(){
 
 
 void dec_sib(){
-	Bit8u modrm,sib,mod,ss,index,base;
-	Bit32u scale,index_reg;
-	Bit32u offset=0;
+	u_int8_t modrm,sib,mod,ss,index,base;
+	u_int32_t scale,index_reg;
+	u_int32_t offset=0;
 	modrm=*(curInst+1);
 	sib=*(curInst+2);
 	mod=modrm>>6;
@@ -195,7 +195,7 @@ void dec_sib(){
 			instLen=3;
 			break;
 		case 2:   //mod= 10, 32-bit displacement
-			offset=*(Bit32u*)(curInst+3);
+			offset=*(u_int32_t*)(curInst+3);
 			instLen=6;
 			break;
 		default:
@@ -213,7 +213,7 @@ void dec_sib(){
 	if(index!=4) index_reg=read32BitReg(index);
 	else index_reg=0;
 	if(mod==0&&base==5){
-		offset=*(Bit32u*)(curInst+3);
+		offset=*(u_int32_t*)(curInst+3);
 		instLen=6;
 		eAddr32=offset+index_reg*scale;
 	}

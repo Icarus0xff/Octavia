@@ -1,22 +1,22 @@
 #include "global.h"
-Bit32u getSegmentLimit(Descriptor segment){
-        Bit32u tmp=segment.limit1;
+u_int32_t getSegmentLimit(Descriptor segment){
+        u_int32_t tmp=segment.limit1;
         tmp=tmp<<16+segment.limit2;
         if(segment.g==0){
             return tmp;
         }
         else return tmp<<12|0xFFF;
 }
-Bit32u getSegmentBase(Descriptor segment){
-      Bit32u tmp=segment.base1;
+u_int32_t getSegmentBase(Descriptor segment){
+      u_int32_t tmp=segment.base1;
         tmp=tmp<<24+segment.base2;
         return tmp;
 }
-Bit16u getGateSelector(Descriptor gate){
+u_int16_t getGateSelector(Descriptor gate){
     return gate.selector;
 }
-Bit32u getGateOffset(Descriptor gate){
-    Bit32u tmp=gate.offset1;
+u_int32_t getGateOffset(Descriptor gate){
+    u_int32_t tmp=gate.offset1;
         tmp=tmp<<16+gate.offset2;
         return tmp;
 }
@@ -37,7 +37,7 @@ Bit8s checkTableLimit(Selector selector){
 }
 
 Descriptor* getSegmentDescriptor(Selector selector){
-    Bit32u offset=selector.index*8;
+    u_int32_t offset=selector.index*8;
     if(selector.ti==0){ //in gdt
          linear_addr=translate_linear_addr(SEG_REG_DS,offset+gdtr.base);
          return (Descriptor*)get_mem_data();
@@ -48,7 +48,7 @@ Descriptor* getSegmentDescriptor(Selector selector){
     }
 }
 
-Bit8s checkSegRights(Descriptor descriptor,Bit8u rights_mask){
+Bit8s checkSegRights(Descriptor descriptor,u_int8_t rights_mask){
     rights_mask&=0x0F;
     if(descriptor.s==1)//data/code segment
         if((rights_mask>>3==descriptor.type>>3)&&(rights_mask&descriptor.type==rights_mask) )
@@ -56,7 +56,7 @@ Bit8s checkSegRights(Descriptor descriptor,Bit8u rights_mask){
     return 0;
 }
 
-void load_seg(Selector selector,Bit8u seg){
+void load_seg(Selector selector,u_int8_t seg){
     if(PROTECTED_MODE){
         if(seg==SEG_REG_SS) {
             if(isNullSelector(selector)){

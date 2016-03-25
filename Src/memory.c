@@ -3,7 +3,7 @@
 
 //memory init
 void mem_init(){
-	memBase=(Bit8u*)malloc(MEMSIZE);
+	memBase=(u_int8_t*)malloc(MEMSIZE);
 	int cur=0;
 	FILE *memFile;
 	unsigned char buf[512];
@@ -41,7 +41,7 @@ void mem_init(){
 }
 
 void rtl_mem_init(){
-	memBase_rtl=(Bit8u*)malloc(MEMSIZE);
+	memBase_rtl=(u_int8_t*)malloc(MEMSIZE);
 	int cur=0;
 	FILE *memFile;
 	unsigned char buf[512];
@@ -86,58 +86,58 @@ void rtl_mem_init(){
 	DEBUG("cur=%d,%d\n",cur,memBase_rtl[cur-1]);
 }
 
-Bit32u translate_linear_addr(Bit32u offset,Bit8u sreg){
+u_int32_t translate_linear_addr(u_int32_t offset,u_int8_t sreg){
 	return (readSegmentSelector(sreg)<<4)+offset;
 	//DEBUG("linear address:%08x(%d)\n",linear_addr,offset);
 }
-Bit8u* get_mem_data(){
+u_int8_t* get_mem_data(){
 	DEBUG("data:%0x",*(memBase+linear_addr));
 	return memBase+linear_addr;
 }
 void* get_stack_top(){
 	if(stack_address_size()==16){
-		Bit32u top_address=translate_linear_addr(SP,SEG_REG_SS);
+		u_int32_t top_address=translate_linear_addr(SP,SEG_REG_SS);
 		return memBase+top_address;
 	}
 	else{
-		Bit32u top_address=translate_linear_addr(ESP,SEG_REG_SS);
+		u_int32_t top_address=translate_linear_addr(ESP,SEG_REG_SS);
 		return memBase+top_address;
 	}
 }
 
 void* get_stack_base(){
 	if(stack_address_size()==16){
-		Bit32u top_address=translate_linear_addr(BP,SEG_REG_SS);
+		u_int32_t top_address=translate_linear_addr(BP,SEG_REG_SS);
 		return memBase+top_address;
 	}
 	else{
-		Bit32u top_address=translate_linear_addr(EBP,SEG_REG_SS);
+		u_int32_t top_address=translate_linear_addr(EBP,SEG_REG_SS);
 		return memBase+top_address;
 	}
 }
-void push_16b(Bit16u data){
+void push_16b(u_int16_t data){
 	ESP=ESP-2;
-	Bit16u* top=(Bit16u*)get_stack_top();
+	u_int16_t* top=(u_int16_t*)get_stack_top();
 	*top=data;
 }
-void push_32b(Bit32u data){
+void push_32b(u_int32_t data){
 	ESP=ESP-4;
-	Bit32u* top=(Bit32u*)get_stack_top();
+	u_int32_t* top=(u_int32_t*)get_stack_top();
 	*top=data;
 }
-Bit16u pop_16b(){
-	Bit16u* top=(Bit16u*)get_stack_top();
+u_int16_t pop_16b(){
+	u_int16_t* top=(u_int16_t*)get_stack_top();
 	ESP=ESP+2;
 	return *top;
 }
-Bit32u pop_32b(){
-	Bit32u* top=(Bit32u*)get_stack_top();
+u_int32_t pop_32b(){
+	u_int32_t* top=(u_int32_t*)get_stack_top();
 	ESP=ESP+4;
 	return *top;
 }
 
-Bit8u* get_string_src(){ //DS：（ESI）
-    Bit8u dstSreg=prefix_seg==7?SEG_REG_DS:prefix_seg;
+u_int8_t* get_string_src(){ //DS：（ESI）
+    u_int8_t dstSreg=prefix_seg==7?SEG_REG_DS:prefix_seg;
        if(address_size()==16)
         linear_addr=translate_linear_addr(SI,dstSreg);
      else
@@ -145,7 +145,7 @@ Bit8u* get_string_src(){ //DS：（ESI）
     return get_mem_data();
 }
 
-Bit8u* get_string_dst(){ //ES：（EDI）
+u_int8_t* get_string_dst(){ //ES：（EDI）
      if(address_size()==16)
         linear_addr=translate_linear_addr(DI,SEG_REG_ES);
      else

@@ -15,8 +15,8 @@ extern Reg greg[8];
 #define CH (greg[1].word.byte.rh)
 #define DH (greg[2].word.byte.rh)
 #define BH (greg[3].word.byte.rh)
-Bit8u read8BitReg(Bit8u index);
-void write8BitReg(Bit8u index,Bit8u data);
+u_int8_t read8BitReg(u_int8_t index);
+void write8BitReg(u_int8_t index,u_int8_t data);
 //16-bit general reg
 #define AX (greg[0].word.rx)
 #define CX (greg[1].word.rx)
@@ -26,8 +26,8 @@ void write8BitReg(Bit8u index,Bit8u data);
 #define BP (greg[5].word.rx)
 #define SI (greg[6].word.rx)
 #define DI (greg[7].word.rx)
-Bit16u read16BitReg(Bit8u index);
-void write16BitReg(Bit8u index,Bit16u data);
+u_int16_t read16BitReg(u_int8_t index);
+void write16BitReg(u_int8_t index,u_int16_t data);
 //32-bit general reg
 #define EAX (greg[0].dword.erx)
 #define ECX (greg[1].dword.erx)
@@ -37,8 +37,8 @@ void write16BitReg(Bit8u index,Bit16u data);
 #define EBP (greg[5].dword.erx)
 #define ESI (greg[6].dword.erx)
 #define EDI (greg[7].dword.erx)
-Bit32u read32BitReg(Bit8u index);
-void write32BitReg(Bit8u index,Bit32u data);
+u_int32_t read32BitReg(u_int8_t index);
+void write32BitReg(u_int8_t index,u_int32_t data);
 // instruction pointer
 extern Reg ipreg;
 #define EIP (ipreg.dword.erx)
@@ -117,20 +117,20 @@ extern Sreg ldtr,tr;
 #define TRDesc	tr.cache
 #define CPL (CS.selector&3)
 #define NULL_SELECTOR_MASK 0xFFFC
-extern Bit8u cpl;
-extern Bit32u getSegmentLimit(Descriptor segment);
-extern Bit32u getSegmentBase(Descriptor segment);
-extern Bit16u getGateSelector(Descriptor gate);
-extern Bit32u getGateOffset(Descriptor gate);
+extern u_int8_t cpl;
+extern u_int32_t getSegmentLimit(Descriptor segment);
+extern u_int32_t getSegmentBase(Descriptor segment);
+extern u_int16_t getGateSelector(Descriptor gate);
+extern u_int32_t getGateOffset(Descriptor gate);
 extern Bit8s isNullSelector(Selector selector);
 extern Bit8s checkTableLimit(Selector selector);
 extern Descriptor* getSegmentDescriptor(Selector selector);
-extern Bit8s checkSegRights(Descriptor descriptor,Bit8u rights);
-void load_seg(Selector selector,Bit8u seg);
+extern Bit8s checkSegRights(Descriptor descriptor,u_int8_t rights);
+void load_seg(Selector selector,u_int8_t seg);
 /********************************
 	EFLAGS
 ********************************/
-extern Bit32u eflags;
+extern u_int32_t eflags;
 #define CF 0
 #define PF 2
 #define AF 4
@@ -169,12 +169,12 @@ extern Bit32u eflags;
 #define CPAZSO_MASK (CF_MASK|PF_MASK|AF_MASK|ZF_MASK|SF_MASK|OF_MASK)
 #define PZS_MASK (SF_MASK|ZF_MASK|PF_MASK)
 #define PAZSO_MASK (PF_MASK|AF_MASK|ZF_MASK|SF_MASK|OF_MASK)
-//const Bit32u EflagsValidMASK=0x003f7fd5;
+//const u_int32_t EflagsValidMASK=0x003f7fd5;
 #define SET_EFLAGS(result,dst,src,add_or_sub,bits,flag_mask){\
-	Bit32u set_flags=0; \
+	u_int32_t set_flags=0; \
 	if(result==0) set_flags|=1<<ZF; \
 	if(result&(1<<bits-1)) set_flags|=1<<SF;\
-	Bit8u bitNum=0,i;\
+	u_int8_t bitNum=0,i;\
 	for(i=0;i<8;i++){\
 		 bitNum+=(result&(1<<i))?1:0;\
 	}\
@@ -203,7 +203,7 @@ extern Bit32u eflags;
 /**************************************
 	Control register
 **************************************/
-extern Bit32u cr[5];
+extern u_int32_t cr[5];
 #define CRO_PE_MASK 1
 #define CRO_MP_MASK (1<<1)
 #define CRO_EM_MASK (1<<2)
@@ -231,7 +231,7 @@ extern Bit32u cr[5];
 /**************************************
 	Debug register
 **************************************/
-extern Bit32u dr[8];
+extern u_int32_t dr[8];
 #define DR7_GD_MASK (1<<13)  //enable the dr protection condition flagged by BD of DR6
 #define DR7_LE_MASK (1<<8)  //local exact data breakpoint match
 #define DR7_GE_MASK (1<<9)  //global exact data breakpoint match
@@ -252,35 +252,35 @@ extern Bit32u dr[8];
 /****************************
 	AddressSize function
 ******************************/
-Bit8u address_size(); /* 16 or 32 */
-Bit8u operand_size(); /* 16 or 32 */
-Bit8u stack_address_size();
+u_int8_t address_size(); /* 16 or 32 */
+u_int8_t operand_size(); /* 16 or 32 */
+u_int8_t stack_address_size();
 
 /****************************
 	exec
 ******************************/
-extern Bit8u *memBase;
-extern Bit8u *memBase_rtl;
+extern u_int8_t *memBase;
+extern u_int8_t *memBase_rtl;
 #define MEMSIZE (1024*1024)
-extern Bit8u *curInst;  //current instruction location
+extern u_int8_t *curInst;  //current instruction location
 //prefix related
-extern Bit8u prefixLen;  //prefix length
-extern Bit8u prefix_seg;  //segment override
-extern Bit8u prefix_lock;	//lock
-extern Bit8u prefix_rep;	//repeat
-extern Bit8u prefix_2byte;   //2byte opcode
-extern Bit8u prefix_operand; //operand size
-extern Bit8u prefix_address;  //address size
+extern u_int8_t prefixLen;  //prefix length
+extern u_int8_t prefix_seg;  //segment override
+extern u_int8_t prefix_lock;	//lock
+extern u_int8_t prefix_rep;	//repeat
+extern u_int8_t prefix_2byte;   //2byte opcode
+extern u_int8_t prefix_operand; //operand size
+extern u_int8_t prefix_address;  //address size
 //opcode decoder
-extern Bit8u immLen;
+extern u_int8_t immLen;
 //modrm decoder
-extern Bit8u instLen;
-extern Bit8u reg1,reg2;
-extern Bit8u rm_is_reg;
-extern Bit16u eAddr16;
-extern Bit32u eAddr32;
-extern Bit8u eAddr_sreg;
-extern Bit32u linear_addr;
+extern u_int8_t instLen;
+extern u_int8_t reg1,reg2;
+extern u_int8_t rm_is_reg;
+extern u_int16_t eAddr16;
+extern u_int32_t eAddr32;
+extern u_int8_t eAddr_sreg;
+extern u_int32_t linear_addr;
 /*******************************
 		function
 ********************************/
@@ -299,64 +299,64 @@ void dec_sib();
 //memory
 void mem_init();
 void rtl_mem_init();
-Bit32u translate_linear_addr(Bit32u offset,Bit8u sreg);
-Bit8u* get_mem_data();
+u_int32_t translate_linear_addr(u_int32_t offset,u_int8_t sreg);
+u_int8_t* get_mem_data();
 void* get_stack_top();
 void* get_stack_base();
-void push_16b(Bit16u data);
-void push_32b(Bit32u data);
-Bit16u pop_16b();
-Bit32u pop_32b();
-Bit8u * get_string_dst();
-Bit8u *get_string_src();
+void push_16b(u_int16_t data);
+void push_32b(u_int32_t data);
+u_int16_t pop_16b();
+u_int32_t pop_32b();
+u_int8_t * get_string_dst();
+u_int8_t *get_string_src();
 //eflags
-Bit8u get_flag(Bit8u FLAG);
-void set_flag(Bit8u FLAG);
-void clear_flag(Bit8u FLAG);
-Bit8u get_iopl();
-Bit8s conditions_judge(Bit8u condition);
+u_int8_t get_flag(u_int8_t FLAG);
+void set_flag(u_int8_t FLAG);
+void clear_flag(u_int8_t FLAG);
+u_int8_t get_iopl();
+Bit8s conditions_judge(u_int8_t condition);
 //others
-Bit8u rep_condition(Bit8u isCmpOp);
-Bit16u readSegmentSelector(Bit8u index);
+u_int8_t rep_condition(u_int8_t isCmpOp);
+u_int16_t readSegmentSelector(u_int8_t index);
 /********************************************
 	instruction execution
 ********************************************/
 void exec_aaa();
-void exec_aad(Bit8u imm);
-void exec_aam(Bit8u imm);
+void exec_aad(u_int8_t imm);
+void exec_aam(u_int8_t imm);
 void exec_aas();
-Bit8u exec_arith_8b(Bit8u index,Bit8u dst,Bit8u src);
-Bit16u exec_arith_16b(Bit8u index,Bit16u dst,Bit16u src);
-Bit32u exec_arith_32b(Bit8u index,Bit32u dst,Bit32u src);
-Bit8u exec_adc_8b(Bit8u dst,Bit8u src);
-Bit16u exec_adc_16b(Bit16u dst,Bit16u src);
-Bit32u exec_adc_32b(Bit32u dst,Bit32u src);
-Bit8u exec_add_8b(Bit8u dst,Bit8u src);
-Bit16u exec_add_16b(Bit16u dst,Bit16u src);
-Bit32u exec_add_32b(Bit32u dst,Bit32u src);
-Bit8u exec_and_8b(Bit8u dst,Bit8u src);
-Bit16u exec_and_16b(Bit16u dst,Bit16u src);
-Bit32u exec_and_32b(Bit32u dst,Bit32u src);
-Bit8u exec_or_8b(Bit8u dst,Bit8u src);
-Bit16u exec_or_16b(Bit16u dst,Bit16u src);
-Bit32u exec_or_32b(Bit32u dst,Bit32u src);
-Bit8u exec_xor_8b(Bit8u dst,Bit8u src);
-Bit16u exec_xor_16b(Bit16u dst,Bit16u src);
-Bit32u exec_xor_32b(Bit32u dst,Bit32u src);
-Bit8u exec_cmp_8b(Bit8u dst,Bit8u src);
-Bit16u exec_cmp_16b(Bit16u dst,Bit16u src);
-Bit32u exec_cmp_32b(Bit32u dst,Bit32u src);
-Bit16u exec_arpl(Bit16u dst,Bit16u src);
+u_int8_t exec_arith_8b(u_int8_t index,u_int8_t dst,u_int8_t src);
+u_int16_t exec_arith_16b(u_int8_t index,u_int16_t dst,u_int16_t src);
+u_int32_t exec_arith_32b(u_int8_t index,u_int32_t dst,u_int32_t src);
+u_int8_t exec_adc_8b(u_int8_t dst,u_int8_t src);
+u_int16_t exec_adc_16b(u_int16_t dst,u_int16_t src);
+u_int32_t exec_adc_32b(u_int32_t dst,u_int32_t src);
+u_int8_t exec_add_8b(u_int8_t dst,u_int8_t src);
+u_int16_t exec_add_16b(u_int16_t dst,u_int16_t src);
+u_int32_t exec_add_32b(u_int32_t dst,u_int32_t src);
+u_int8_t exec_and_8b(u_int8_t dst,u_int8_t src);
+u_int16_t exec_and_16b(u_int16_t dst,u_int16_t src);
+u_int32_t exec_and_32b(u_int32_t dst,u_int32_t src);
+u_int8_t exec_or_8b(u_int8_t dst,u_int8_t src);
+u_int16_t exec_or_16b(u_int16_t dst,u_int16_t src);
+u_int32_t exec_or_32b(u_int32_t dst,u_int32_t src);
+u_int8_t exec_xor_8b(u_int8_t dst,u_int8_t src);
+u_int16_t exec_xor_16b(u_int16_t dst,u_int16_t src);
+u_int32_t exec_xor_32b(u_int32_t dst,u_int32_t src);
+u_int8_t exec_cmp_8b(u_int8_t dst,u_int8_t src);
+u_int16_t exec_cmp_16b(u_int16_t dst,u_int16_t src);
+u_int32_t exec_cmp_32b(u_int32_t dst,u_int32_t src);
+u_int16_t exec_arpl(u_int16_t dst,u_int16_t src);
 void exec_bound_16b(Bit16s*bound,Bit16s index);
 void exec_bound_32b(Bit32s*bound,Bit32s index);
-void exec_bsf_16b(Bit8u dst,Bit16u src);
-void exec_bsf_32b(Bit8u dst,Bit32u src);
-void exec_bsr_16b(Bit8u dst,Bit16u src);
-void exec_bsr_32b(Bit8u dst,Bit32u src);
-void exec_bswap(Bit8u reg);
-void exec_btx_16b_reg(Bit8u op,Bit8u dst,Bit16u index);
-void exec_btx_32b_reg(Bit8u op,Bit8u dst,Bit32u index);
-void exec_btx_mem(Bit8u op,Bit8u *dst,Bit32s index);
+void exec_bsf_16b(u_int8_t dst,u_int16_t src);
+void exec_bsf_32b(u_int8_t dst,u_int32_t src);
+void exec_bsr_16b(u_int8_t dst,u_int16_t src);
+void exec_bsr_32b(u_int8_t dst,u_int32_t src);
+void exec_bswap(u_int8_t reg);
+void exec_btx_16b_reg(u_int8_t op,u_int8_t dst,u_int16_t index);
+void exec_btx_32b_reg(u_int8_t op,u_int8_t dst,u_int32_t index);
+void exec_btx_mem(u_int8_t op,u_int8_t *dst,Bit32s index);
 void exec_call_near_relative();
 void exec_call_near_absolute();
 void exec_cli();
@@ -364,25 +364,25 @@ void exec_clts();
 void exec_cmc();
 void exec_cmps_8b();
 void exec_cmps_16_32b();
-void exec_cmpxchg_8b(Bit8u src);
-void exec_cmpxchg_16b(Bit16u src);
-void exec_cmpxchg_32b(Bit32u src);
+void exec_cmpxchg_8b(u_int8_t src);
+void exec_cmpxchg_16b(u_int16_t src);
+void exec_cmpxchg_32b(u_int32_t src);
 void exec_cpuid();
 void exec_cwd_cdq();
 void exec_daa();
 void  exec_das();
 void exec_dec_8b();
 void exec_dec_16_32b();
-void exec_dec_16_32b_r(Bit8u reg);
+void exec_dec_16_32b_r(u_int8_t reg);
 void exec_div_8b();
 void exec_div_16_32b();
-void exec_enter(Bit16u bytes ,Bit8u nestLevel);
+void exec_enter(u_int16_t bytes ,u_int8_t nestLevel);
 void exec_idiv_8b();
 void exec_idiv_16_32b();
 void exec_imul_8b();
-void exec_imul_16_32b(Bit8u operandNum,Bit32s imm);
+void exec_imul_16_32b(u_int8_t operandNum,Bit32s imm);
 void exec_lahf();
-void exec_load_seg(Bit8u seg);
+void exec_load_seg(u_int8_t seg);
 void exec_lea();
 void exec_leave();
 void exec_lgdt();
@@ -391,18 +391,18 @@ void exec_lldt();
 void exec_lmsw();
 void exec_lods_8b();
 void exec_lods_16_32b();
-Bit8u exec_loop();
-Bit8u exec_loope();
-Bit8u exec_loopne();
+u_int8_t exec_loop();
+u_int8_t exec_loope();
+u_int8_t exec_loopne();
 void exec_ltr();
-void exec_mov_8b_2rm(Bit8u src);
-void exec_mov_8b_2reg(Bit8u src,Bit8u dstReg);
-void exec_mov_16b_2rm(Bit16u src);
-void exec_mov_16b_2reg(Bit16u src,Bit8u dstReg);
-void exec_mov_32b_2rm(Bit32u src);
-void exec_mov_32b_2reg(Bit32u src,Bit8u dstReg);
-void exec_mov_seg(Bit8u seg);
-void exec_mov_2seg(Bit8u seg);
+void exec_mov_8b_2rm(u_int8_t src);
+void exec_mov_8b_2reg(u_int8_t src,u_int8_t dstReg);
+void exec_mov_16b_2rm(u_int16_t src);
+void exec_mov_16b_2reg(u_int16_t src,u_int8_t dstReg);
+void exec_mov_32b_2rm(u_int32_t src);
+void exec_mov_32b_2reg(u_int32_t src,u_int8_t dstReg);
+void exec_mov_seg(u_int8_t seg);
+void exec_mov_2seg(u_int8_t seg);
 void exec_mov_ctrl();
 void exec_mov_2ctrl();
 void exec_mov_debug();
@@ -424,35 +424,35 @@ void exec_popa();
 void exec_popf();
 void exec_pusha();
 void exec_pushf();
-Bit8u exec_sbb_8b(Bit8u dst,Bit8u src);
-Bit16u exec_sbb_16b(Bit16u dst,Bit16u src);
-Bit32u exec_sbb_32b(Bit32u dst,Bit32u src);
-Bit8u exec_shift_8b(Bit8u index,Bit8u src,Bit8u count);
-Bit16u exec_shift_16b(Bit8u index,Bit16u src,Bit8u count);
-Bit32u exec_shift_32b(Bit8u index,Bit32u src,Bit8u count);
+u_int8_t exec_sbb_8b(u_int8_t dst,u_int8_t src);
+u_int16_t exec_sbb_16b(u_int16_t dst,u_int16_t src);
+u_int32_t exec_sbb_32b(u_int32_t dst,u_int32_t src);
+u_int8_t exec_shift_8b(u_int8_t index,u_int8_t src,u_int8_t count);
+u_int16_t exec_shift_16b(u_int8_t index,u_int16_t src,u_int8_t count);
+u_int32_t exec_shift_32b(u_int8_t index,u_int32_t src,u_int8_t count);
 void exec_scas_8b();
 void exec_scas_16b();
 void exec_scas_32b();
-void exec_shld(Bit8u count);
-void exec_shrd(Bit8u count);
+void exec_shld(u_int8_t count);
+void exec_shrd(u_int8_t count);
 void exec_smsw();
 void exec_stc();
 void exec_std();
 void exec_sti();
-void exec_shrd(Bit8u count);
+void exec_shrd(u_int8_t count);
 void exec_stos_8b();
 void exec_stos_16b();
 void exec_stos_32b();
-void exec_xchg_reg(Bit8u reg);
+void exec_xchg_reg(u_int8_t reg);
 void exec_xchg_mem_8b();
 void exec_xchg_mem_16b();
 void exec_xchg_mem_32b();
-Bit8u exec_xadd_8b(Bit8u dst);
-Bit16u exec_xadd_16b(Bit16u dst);
-Bit32u exec_xadd_32b(Bit32u dst);
-Bit8u exec_sub_8b(Bit8u dst,Bit8u src);
-Bit16u exec_sub_16b(Bit16u dst,Bit16u src);
-Bit32u exec_sub_32b(Bit32u dst,Bit32u src);
+u_int8_t exec_xadd_8b(u_int8_t dst);
+u_int16_t exec_xadd_16b(u_int16_t dst);
+u_int32_t exec_xadd_32b(u_int32_t dst);
+u_int8_t exec_sub_8b(u_int8_t dst,u_int8_t src);
+u_int16_t exec_sub_16b(u_int16_t dst,u_int16_t src);
+u_int32_t exec_sub_32b(u_int32_t dst,u_int32_t src);
 void exec_xlat();
 
 #define DEBUG printf

@@ -1,19 +1,19 @@
 #include "global.h"
 //eflags operation
-Bit8u get_flag(Bit8u FLAG){
+u_int8_t get_flag(u_int8_t FLAG){
 	return (eflags&(1<<FLAG))>0;
 }
-void set_flag(Bit8u FLAG){
+void set_flag(u_int8_t FLAG){
 	eflags=eflags|(1<<FLAG);
 }
-void clear_flag(Bit8u FLAG){
+void clear_flag(u_int8_t FLAG){
 	eflags=eflags|(~(0xFFFFFFFF&(1<<FLAG)));
 }
-Bit8u get_iopl(){
+u_int8_t get_iopl(){
 	return (eflags<<18)>>30;
 }
 
-Bit8s conditions_judge(Bit8u condition){
+Bit8s conditions_judge(u_int8_t condition){
     switch(condition){
         case 0: return get_flag(OF)==1;
         case 1: return get_flag(OF)==0;

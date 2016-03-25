@@ -1,7 +1,7 @@
 #include "global.h"
 void dec_prefix(){
 	prefixLen=0;
-	Bit8u isPrefix=0;
+	u_int8_t isPrefix=0;
 	prefix_lock=0;
 	prefix_rep=0;
 	prefix_seg=7;
@@ -70,8 +70,8 @@ void dec_prefix(){
 }
 
 //isCmpOp is used to distinguish REP（0） and REPE／REPNE(1）
-Bit8u rep_condition(Bit8u isCmpOp){
-        Bit8u terminal;
+u_int8_t rep_condition(u_int8_t isCmpOp){
+        u_int8_t terminal;
         if(operand_size()==16)
             terminal=(--CX==0);
         else

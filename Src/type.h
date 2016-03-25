@@ -3,9 +3,9 @@
 #include <cstdio>
 #include <cstdlib>
 
-typedef u_int8_t Bit8u;
-typedef unsigned short Bit16u;
-typedef unsigned int Bit32u;
+typedef u_int8_t u_int8_t;
+typedef unsigned short u_int16_t;
+typedef unsigned int u_int32_t;
 typedef signed char Bit8s;
 typedef signed short Bit16s;
 typedef signed int Bit32s;
@@ -14,17 +14,17 @@ typedef signed long Bit64;
 typedef struct{
 	union{
 		struct{
-			Bit32u erx;                 //32 bit register
+			u_int32_t erx;                 //32 bit register
 		}dword;
 		struct{
 			union{
-				Bit16u rx;
+				u_int16_t rx;
 				struct{
 					u_int8_t rl;             //low 8-bit register
 					u_int8_t rh;
 				} byte;
 			};
-			Bit16u idle;
+			u_int16_t idle;
 		}word;
 	};
 }Reg;
@@ -32,11 +32,11 @@ typedef struct{
 //segment register
 typedef struct{
     union{
-        Bit16u selector;
+        u_int16_t selector;
         struct{
-            Bit16u   rpl:2;
-            Bit16u   ti:1;
-            Bit16u 	index:13;
+            u_int16_t   rpl:2;
+            u_int16_t   ti:1;
+            u_int16_t 	index:13;
         };
     };
     u_int8_t valid;
@@ -90,7 +90,7 @@ typedef struct{
 
 //global segment reg:gdtr,idtr
 typedef struct{
-	Bit32u base;
-	Bit16u limit;
+	u_int32_t base;
+	u_int16_t limit;
 }GlobalSreg;
 #endif
