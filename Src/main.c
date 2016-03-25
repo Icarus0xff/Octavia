@@ -1,36 +1,36 @@
 #include "global.h"
 
-  /*
-    Initialize variables.
-  */
-  u_int8_t *memBase = 0;
-  u_int8_t *memBase_rtl = 0;
-  Sreg sreg[6] = {0};
-  u_int8_t *curInst = 0;  //current instruction location
-  u_int8_t prefixLen = 0;  //prefix length
-  u_int8_t prefix_seg = 0;  //segment override
-  u_int8_t prefix_lock = 0;	//lock
-  u_int8_t prefix_rep = 0;	//repeat
-  u_int8_t prefix_2byte = 0;   //2byte opcode
-  u_int8_t prefix_operand = 0; //operand size
-  u_int8_t prefix_address = 0;  //address size
-  Reg ipreg = {0};
+/*
+  Initialize variables.
+*/
+u_int8_t *memBase = 0;
+u_int8_t *memBase_rtl = 0;
+Sreg sreg[6] = {0};
+u_int8_t *curInst = 0;  //current instruction location
+u_int8_t prefixLen = 0;  //prefix length
+u_int8_t prefix_seg = 0;  //segment override
+u_int8_t prefix_lock = 0;	//lock
+u_int8_t prefix_rep = 0;	//repeat
+u_int8_t prefix_2byte = 0;   //2byte opcode
+u_int8_t prefix_operand = 0; //operand size
+u_int8_t prefix_address = 0;  //address size
+Reg ipreg = {0};
 
-  u_int8_t instLen = 0;
-  u_int8_t reg1 = 0, reg2 = 0;
-  u_int8_t rm_is_reg = 0;
-  u_int16_t eAddr16 = 0;
-  u_int32_t eAddr32 = 0;
-  u_int8_t eAddr_sreg = 0;
-  u_int32_t linear_addr = 0;
+u_int8_t instLen = 0;
+u_int8_t reg1 = 0, reg2 = 0;
+u_int8_t rm_is_reg = 0;
+u_int16_t eAddr16 = 0;
+u_int32_t eAddr32 = 0;
+u_int8_t eAddr_sreg = 0;
+u_int32_t linear_addr = 0;
 
-  Reg greg[8] = {0};
-  u_int8_t immLen = 0;
-  u_int8_t cpl = 0;
-  Sreg ldtr = {0}, tr = {0};
-  GlobalSreg gdtr = {0}, idtr = {0};
-  u_int32_t eflags = 0;
-  u_int32_t cr[5] = {0};
+Reg greg[8] = {0};
+u_int8_t immLen = 0;
+u_int8_t cpl = 0;
+Sreg ldtr = {0}, tr = {0};
+GlobalSreg gdtr = {0}, idtr = {0};
+u_int32_t eflags = 0;
+u_int32_t cr[5] = {0};
 u_int32_t dr[8] = {0};
 
 int main(){
