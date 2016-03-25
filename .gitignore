@@ -26,3 +26,8 @@
 *.exe
 *.out
 *.app
+
+# My files
+cscope.files
+cscope.out
+*~
