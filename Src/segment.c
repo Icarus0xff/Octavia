@@ -20,12 +20,12 @@ u_int32_t getGateOffset(Descriptor gate){
         tmp=tmp<<16+gate.offset2;
         return tmp;
 }
-Bit8s isNullSelector(Selector selector){ //the first segment in GDT is null ,index=0,ti=0
+int8_t isNullSelector(Selector selector){ //the first segment in GDT is null ,index=0,ti=0
     if((selector.selector&NULL_SELECTOR_MASK)==0) return 1;
     else return 0;
 }
 
-Bit8s checkTableLimit(Selector selector){
+int8_t checkTableLimit(Selector selector){
     if(selector.ti==0){ //in gdt
         if(selector.index<gdtr.limit) return 1;
         else return 0;
@@ -48,7 +48,7 @@ Descriptor* getSegmentDescriptor(Selector selector){
     }
 }
 
-Bit8s checkSegRights(Descriptor descriptor,u_int8_t rights_mask){
+int8_t checkSegRights(Descriptor descriptor,u_int8_t rights_mask){
     rights_mask&=0x0F;
     if(descriptor.s==1)//data/code segment
         if((rights_mask>>3==descriptor.type>>3)&&(rights_mask&descriptor.type==rights_mask) )

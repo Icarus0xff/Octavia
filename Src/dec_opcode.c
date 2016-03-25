@@ -180,7 +180,7 @@ void dec_opcode_run(){
 			dec_modrm();
 			if(operand_size()==16){
 				immLen=1;
-				Bit16s imm=*(Bit8s*)(curInst+1+instLen);
+				int16_t imm=*(int8_t*)(curInst+1+instLen);
 				if(rm_is_reg){
 					u_int16_t tmp=exec_arith_16b(reg1,read16BitReg(reg2),imm);
 					write16BitReg(reg2,tmp);
@@ -191,7 +191,7 @@ void dec_opcode_run(){
 			}
 			else {
 				immLen=1;
-				Bit32s imm=*(Bit8s*)(curInst+1+instLen);
+				int32_t imm=*(int8_t*)(curInst+1+instLen);
 				if(rm_is_reg){
 					u_int32_t tmp=exec_arith_32b(reg1,read32BitReg(reg2),imm);
 					write32BitReg(reg2,tmp);
@@ -220,9 +220,9 @@ void dec_opcode_run(){
 			} else{
 				u_int8_t *data=(u_int8_t*)get_mem_data();
 				if(operand_size()==16)
-					exec_bound_16b((Bit16s*)data,(Bit16s)read16BitReg(reg1));
+					exec_bound_16b((int16_t*)data,(int16_t)read16BitReg(reg1));
 				else
-					exec_bound_32b((Bit32s*)data,(Bit32s)read32BitReg(reg1));
+					exec_bound_32b((int32_t*)data,(int32_t)read32BitReg(reg1));
 				break;
 			}
 		case 0xE8: //call near relative
@@ -263,11 +263,11 @@ void dec_opcode_run(){
 			}
 		case 0x98://CBW/CWDE
 			if(operand_size()==16){
-				Bit16s tmp=(Bit8s)AL;
+				int16_t tmp=(int8_t)AL;
 				AX=tmp;
 			}
 			else {
-				Bit32s tmp=(Bit32s)AX;
+				int32_t tmp=(int32_t)AX;
 				EAX=tmp;
 			}
 			break;
@@ -306,19 +306,19 @@ void dec_opcode_run(){
             dec_modrm();
             immLen=1;
 	    {
-		Bit32s imm=*(Bit8s*)(curInst+instLen+1);
+		int32_t imm=*(int8_t*)(curInst+instLen+1);
 		exec_imul_16_32b(3,imm);
 	    }
             break;
         case 0x69:// imul r16/32,r/m16/32,imm16/32
             dec_modrm();
             {
-                Bit32s imm;
+                int32_t imm;
                 if(operand_size()==16){
-                    imm=*(Bit16s*)(curInst+instLen+1);
+                    imm=*(int16_t*)(curInst+instLen+1);
                     immLen=2;
                 }else{
-                    imm=*(Bit32s*)(curInst+instLen+1);
+                    imm=*(int32_t*)(curInst+instLen+1);
                     immLen=2;
                 }
                 exec_imul_16_32b(3,imm);
@@ -870,7 +870,7 @@ void dec_opcode_run(){
 		default:
 		{
             if(*curInst&0xF0==0x70){ //jcc imm8
-                Bit8s disp=*(curInst+1);
+                int8_t disp=*(curInst+1);
                 immLen=1;
                 if(conditions_judge(*curInst&0x0F)){
                     nojmp=0;
@@ -981,7 +981,7 @@ void dec_opcode_2byte_run(){
 					break;
 				}
 				u_int8_t *data=get_mem_data();
-				exec_btx_mem((*curInst&0x38)>>3,data,(Bit16s)read16BitReg(reg1));
+				exec_btx_mem((*curInst&0x38)>>3,data,(int16_t)read16BitReg(reg1));
 			}
 			else {
 				if(rm_is_reg){
@@ -989,7 +989,7 @@ void dec_opcode_2byte_run(){
 					break;
 				}
 				u_int8_t *data=get_mem_data();
-				exec_btx_mem((*curInst&0x38)>>3,data,(Bit32s)read32BitReg(reg1));
+				exec_btx_mem((*curInst&0x38)>>3,data,(int32_t)read32BitReg(reg1));
 			}
 			break;
 		case 0xBA://BTx
@@ -1261,12 +1261,12 @@ void dec_opcode_2byte_run(){
                 break;
 			}
 			else if(*curInst&0xF0==0x80){ //Jcc imm16/32
-                 Bit32s disp;
+                 int32_t disp;
                  if(operand_size()==16) {
-                    disp=*(Bit16s*)(curInst+1);
+                    disp=*(int16_t*)(curInst+1);
                     immLen=2;
                 }else{
-                   disp=*(Bit32s*)(curInst+1);
+                   disp=*(int32_t*)(curInst+1);
                     immLen=4;
                 }
                 if(conditions_judge(*curInst&0x0F)){

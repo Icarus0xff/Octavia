@@ -13,7 +13,7 @@ u_int8_t get_iopl(){
 	return (eflags<<18)>>30;
 }
 
-Bit8s conditions_judge(u_int8_t condition){
+int8_t conditions_judge(u_int8_t condition){
     switch(condition){
         case 0: return get_flag(OF)==1;
         case 1: return get_flag(OF)==0;

@@ -33,7 +33,7 @@ void dec_modrm_16b(){
 	else{
 		switch(mod){
 			case 1:   //mod= 01,8-bit displacement
- 				offset=*(Bit8s*)(curInst+2);
+ 				offset=*(int8_t*)(curInst+2);
 				instLen=2;
 				break;
 			case 2:   //mod= 10, 16-bit displacement
@@ -111,7 +111,7 @@ void dec_modrm_32b(){
 	else if(rm!=4){
 		switch(mod){
 			case 1:   //mod= 01,8-bit displacement
- 				offset=*(Bit8s*)(curInst+2);
+ 				offset=*(int8_t*)(curInst+2);
 				instLen=2;
 				break;
 			case 2:   //mod= 10, 32-bit displacement
@@ -191,7 +191,7 @@ void dec_sib(){
 			instLen=2;
 			break;
 		case 1:   //mod= 01,8-bit displacement
-			offset=*(Bit8s*)(curInst+3);
+			offset=*(int8_t*)(curInst+3);
 			instLen=3;
 			break;
 		case 2:   //mod= 10, 32-bit displacement

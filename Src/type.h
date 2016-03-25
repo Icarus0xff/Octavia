@@ -3,13 +3,6 @@
 #include <cstdio>
 #include <cstdlib>
 
-typedef u_int8_t u_int8_t;
-typedef unsigned short u_int16_t;
-typedef unsigned int u_int32_t;
-typedef signed char Bit8s;
-typedef signed short Bit16s;
-typedef signed int Bit32s;
-typedef signed long Bit64;
 //general 8/16/32bit register
 typedef struct{
 	union{
@@ -59,28 +52,28 @@ typedef struct{
                   * 14 = 386 interrupt gate
                   * 15 = 386 trap gate */
 typedef  union{
-        Bit64 descriptor;
+        int64_t descriptor;
         struct{
-            Bit64 limit2:16;
-            Bit64 base2:24;
-            Bit64 type:4;
-            Bit64 s:1;  //0=system/gate,1=data/code segment
-            Bit64 dpl:2;  //descriptor privilege level
-            Bit64  p:1; //segment present
-            Bit64 limit1:4;
-            Bit64 avl:1;  //available for use by system software
-            Bit64 reserved1:1;  //=0
-            Bit64 d_b:1;//default address/operand size:0=16bit,1=32bit
-            Bit64  g:1; //limit granularity：0=byte,1=4k
-            Bit64 base1:8;
+            int64_t limit2:16;
+            int64_t base2:24;
+            int64_t type:4;
+            int64_t s:1;  //0=system/gate,1=data/code segment
+            int64_t dpl:2;  //descriptor privilege level
+            int64_t  p:1; //segment present
+            int64_t limit1:4;
+            int64_t avl:1;  //available for use by system software
+            int64_t reserved1:1;  //=0
+            int64_t d_b:1;//default address/operand size:0=16bit,1=32bit
+            int64_t  g:1; //limit granularity：0=byte,1=4k
+            int64_t base1:8;
         };//segment descriptor
         struct{
-            Bit64 offset2:16;
-            Bit64 selector:16;
-            Bit64 paramCount:5;    //used in call gate
-            Bit64 reserved2:3;
-            Bit64 override_part:8;
-            Bit64 offset1:16;
+            int64_t offset2:16;
+            int64_t selector:16;
+            int64_t paramCount:5;    //used in call gate
+            int64_t reserved2:3;
+            int64_t override_part:8;
+            int64_t offset1:16;
         }; //gate descriptor
 }Descriptor;
 typedef struct{

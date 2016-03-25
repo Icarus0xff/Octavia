@@ -210,14 +210,14 @@ u_int16_t exec_arpl(u_int16_t dst,u_int16_t src){
 
 }
 
-void exec_bound_16b(Bit16s*bound,Bit16s index){
+void exec_bound_16b(int16_t*bound,int16_t index){
 	if(index<bound[0]||index>bound[1]+2){
 		printf("#BR exception\n");
 		exit(0);
 	}
 
 }
-void exec_bound_32b(Bit32s*bound,Bit32s index){
+void exec_bound_32b(int32_t*bound,int32_t index){
 	if(index<bound[0]||index>bound[1]+4){
 		printf("#BR exception\n");
 		exit(0);
@@ -324,7 +324,7 @@ void exec_btx_32b_reg(u_int8_t op,u_int8_t dst,u_int32_t index){
 
 	}
 }
-void exec_btx_mem(u_int8_t op,u_int8_t *dst,Bit32s index){
+void exec_btx_mem(u_int8_t op,u_int8_t *dst,int32_t index){
 	if(index<0){
 		dst=dst+(index+1)/8-1;
 		index=1-(index+1)%8;
@@ -750,14 +750,14 @@ void exec_mul_16_32b(){
 
 void exec_neg_8b(){
     if(rm_is_reg){
-        Bit8s src=read8BitReg(reg2);
+        int8_t src=read8BitReg(reg2);
         src=-src;
         write8BitReg(reg2,src);
         if(src==0) clear_flag(CF);
         else set_flag(CF);
     }
     else{
-        Bit8s *src=(Bit8s*)get_mem_data();
+        int8_t *src=(int8_t*)get_mem_data();
         *src=-(*src);
         if(*src==0) clear_flag(CF);
         else set_flag(CF);
@@ -766,28 +766,28 @@ void exec_neg_8b(){
 void exec_neg_16_32b(){
     if(operand_size()==16){
         if(rm_is_reg){
-            Bit16s src=read16BitReg(reg2);
+            int16_t src=read16BitReg(reg2);
             src=-src;
             write16BitReg(reg2,src);
             if(src==0) clear_flag(CF);
             else set_flag(CF);
         }
         else{
-            Bit16s* src=(Bit16s*)get_mem_data();
+            int16_t* src=(int16_t*)get_mem_data();
              *src=-(*src);
             if(*src==0) clear_flag(CF);
             else set_flag(CF);
         }
     }else{
          if(rm_is_reg){
-            Bit32s src=read32BitReg(reg2);
+            int32_t src=read32BitReg(reg2);
             src=-src;
             write32BitReg(reg2,src);
             if(src==0) clear_flag(CF);
             else set_flag(CF);
         }
         else{
-            Bit32s* src=(Bit32s*)get_mem_data();
+            int32_t* src=(int32_t*)get_mem_data();
              *src=-(*src);
             if(*src==0) clear_flag(CF);
             else set_flag(CF);
@@ -876,7 +876,7 @@ void exec_enter(u_int16_t bytes ,u_int8_t nestLevel){
 }
 
 void exec_idiv_8b(){
-    Bit8s src;
+    int8_t src;
     if(rm_is_reg){
         src=read8BitReg(reg2);
     }
@@ -887,34 +887,34 @@ void exec_idiv_8b(){
         printf("#DE exception\n");
         exit(0);
     }
-    Bit8s tmp=(Bit16s)AX/src;
-    AH=(Bit16s)AX%src;
+    int8_t tmp=(int16_t)AX/src;
+    AH=(int16_t)AX%src;
     AL=tmp;
 }
 void exec_idiv_16_32b(){
     if(operand_size()==16){
-         Bit16s src;
+         int16_t src;
         if(rm_is_reg){
             src=read16BitReg(reg2);
         }
         else{
-            src=*(Bit16s*)get_mem_data();
+            src=*(int16_t*)get_mem_data();
         }
         if(src==0){
             printf("#DE exception\n");
             exit(0);
         }
-        Bit32s tmp=DX;
+        int32_t tmp=DX;
         tmp=tmp<<16+AX;
         AX=tmp%src;
         DX=tmp/src;
     }else{
-         Bit32s src;
+         int32_t src;
         if(rm_is_reg){
             src=read32BitReg(reg2);
         }
         else{
-            src=*(Bit32s*)get_mem_data();
+            src=*(int32_t*)get_mem_data();
         }
         if(src==0){
             printf("#DE exception\n");
@@ -928,25 +928,25 @@ void exec_idiv_16_32b(){
 }
 
 void exec_imul_8b(){
-     Bit16s dst=AL,src;
+     int16_t dst=AL,src;
     if(rm_is_reg){
-        src=(Bit8s)read8BitReg(reg2);
+        src=(int8_t)read8BitReg(reg2);
     }
     else{
-        src=(Bit8s)*get_mem_data();
+        src=(int8_t)*get_mem_data();
     }
     AX=src*dst;
 }
 
-void exec_imul_16_32b(u_int8_t operandNum,Bit32s imm){
+void exec_imul_16_32b(u_int8_t operandNum,int32_t imm){
     switch(operandNum){
         case 1:
             if(operand_size()==16){
-                 Bit32s src;
+                 int32_t src;
                 if(rm_is_reg){
-                    src=(Bit16s)read16BitReg(reg2);
+                    src=(int16_t)read16BitReg(reg2);
                 }else{
-                    src=*(Bit16s*)get_mem_data();
+                    src=*(int16_t*)get_mem_data();
                 }
                 u_int32_t dst=src*AX;
                 AX=dst&0xFFFF;
@@ -959,13 +959,13 @@ void exec_imul_16_32b(u_int8_t operandNum,Bit32s imm){
                         clear_flag(OF);
                 }
             }else{
-                Bit64 src;
+                int64_t src;
                 if(rm_is_reg){
-                    src=(Bit32s)read32BitReg(reg2);
+                    src=(int32_t)read32BitReg(reg2);
                 }else{
-                    src=*(Bit32s*)get_mem_data();
+                    src=*(int32_t*)get_mem_data();
                 }
-                Bit64 dst=src*EAX;
+                int64_t dst=src*EAX;
                 EAX=dst&0xFFFFFFFF;
                 EDX=dst>>32;
                 if(EDX!=0&&(EDX+1)!=0){
@@ -979,11 +979,11 @@ void exec_imul_16_32b(u_int8_t operandNum,Bit32s imm){
             break;
         case 2:
             if(operand_size()==16){
-                Bit32s src;
+                int32_t src;
                 if(rm_is_reg){
-                        src=(Bit16s)read16BitReg(reg2);
+                        src=(int16_t)read16BitReg(reg2);
                 }else{
-                       src=*(Bit16s*)get_mem_data();
+                       src=*(int16_t*)get_mem_data();
                 }
                 u_int32_t dst=src*read16BitReg(reg1);
                 write16BitReg(reg1,dst&0xFFFF);
@@ -996,14 +996,14 @@ void exec_imul_16_32b(u_int8_t operandNum,Bit32s imm){
                         clear_flag(OF);
                 }
             }else{
-                 Bit64 src;
+                 int64_t src;
                  if(rm_is_reg){
-                        Bit64 src=(Bit32s)read32BitReg(reg2);
+                        int64_t src=(int32_t)read32BitReg(reg2);
 
                 }else{
-                    Bit64 src=*(Bit32s*)get_mem_data();
+                    int64_t src=*(int32_t*)get_mem_data();
                 }
-                 Bit64 dst=read32BitReg(reg1)*src;
+                 int64_t dst=read32BitReg(reg1)*src;
                  write32BitReg(reg1,dst&0xFFFFFFFF);
                  u_int32_t up32b=dst>>32;
                 if(up32b!=0&&(up32b+1)!=0){
@@ -1017,11 +1017,11 @@ void exec_imul_16_32b(u_int8_t operandNum,Bit32s imm){
             break;
         case 3:
              if(operand_size()==16){
-                Bit32s src;
+                int32_t src;
                 if(rm_is_reg){
-                        src=(Bit16s)read16BitReg(reg2);
+                        src=(int16_t)read16BitReg(reg2);
                 }else{
-                       src=*(Bit16s*)get_mem_data();
+                       src=*(int16_t*)get_mem_data();
                 }
                 u_int32_t dst=src*imm;
                 write16BitReg(reg1,dst&0xFFFF);
@@ -1034,14 +1034,14 @@ void exec_imul_16_32b(u_int8_t operandNum,Bit32s imm){
                         clear_flag(OF);
                 }
             }else{
-                 Bit64 src;
+                 int64_t src;
                  if(rm_is_reg){
-                        Bit64 src=(Bit32s)read32BitReg(reg2);
+                        int64_t src=(int32_t)read32BitReg(reg2);
 
                 }else{
-                    Bit64 src=*(Bit32s*)get_mem_data();
+                    int64_t src=*(int32_t*)get_mem_data();
                 }
-                 Bit64 dst=src*imm;
+                 int64_t dst=src*imm;
                  write32BitReg(reg1,dst&0xFFFFFFFF);
                  u_int32_t up32b=dst>>32;
                 if(up32b!=0&&(up32b+1)!=0){
@@ -1227,7 +1227,7 @@ u_int8_t exec_loop(){
             condition=1;
         }
     }
-    Bit32s offset=*(Bit8s*)(curInst+1);
+    int32_t offset=*(int8_t*)(curInst+1);
     u_int32_t newIP=offset+EIP;
     if(condition){
         if(operand_size()==16) IP=newIP&0xFFFF;
@@ -1249,7 +1249,7 @@ u_int8_t exec_loope(){
             condition=1;
         }
     }
-    Bit32s offset=*(Bit8s*)(curInst+1);
+    int32_t offset=*(int8_t*)(curInst+1);
     u_int32_t newIP=offset+EIP;
     if(condition){
         if(operand_size()==16) IP=newIP&0xFFFF;
@@ -1271,7 +1271,7 @@ u_int8_t exec_loopne(){
             condition=1;
         }
     }
-    Bit32s offset=*(Bit8s*)(curInst+1);
+    int32_t offset=*(int8_t*)(curInst+1);
     u_int32_t newIP=offset+EIP;
     if(condition){
         if(operand_size()==16) IP=newIP&0xFFFF;
@@ -1455,16 +1455,16 @@ void exec_movs_16_32b(){
 }
 
 void exec_movsx_8b(){
-    Bit8s src;
-    if(rm_is_reg)  src=(Bit8s)read8BitReg(reg2);
-    else src=*(Bit8s*)get_mem_data();
-    if(operand_size()==16) write16BitReg(reg1,(Bit16s)src);
-    else write32BitReg(reg1,(Bit32s)src);
+    int8_t src;
+    if(rm_is_reg)  src=(int8_t)read8BitReg(reg2);
+    else src=*(int8_t*)get_mem_data();
+    if(operand_size()==16) write16BitReg(reg1,(int16_t)src);
+    else write32BitReg(reg1,(int32_t)src);
 }
 void exec_movsx_16b(){
-    Bit32s src;
-    if(rm_is_reg)  src=(Bit16s)read16BitReg(reg2);
-    else src=*(Bit16s*)get_mem_data();
+    int32_t src;
+    if(rm_is_reg)  src=(int16_t)read16BitReg(reg2);
+    else src=*(int16_t*)get_mem_data();
     write32BitReg(reg1,src);
 }
 
@@ -1971,7 +1971,7 @@ u_int32_t exec_shr_32b(u_int32_t rm,u_int8_t count)
     return rm;
 }
 
-u_int8_t exec_sar_8b(Bit8s rm,u_int8_t count)
+u_int8_t exec_sar_8b(int8_t rm,u_int8_t count)
 {
     u_int8_t tmp = count;
     while(tmp!=0)
@@ -1993,7 +1993,7 @@ u_int8_t exec_sar_8b(Bit8s rm,u_int8_t count)
     SET_EFLAGS(rm,0,0,0,8,PZS_MASK);
     return (u_int8_t)rm;
 }
-u_int16_t exec_sar_16b(Bit16s rm,u_int8_t count) //SAR
+u_int16_t exec_sar_16b(int16_t rm,u_int8_t count) //SAR
 {
     u_int8_t tmp = count;
     while(tmp!=0)
@@ -2015,7 +2015,7 @@ u_int16_t exec_sar_16b(Bit16s rm,u_int8_t count) //SAR
     SET_EFLAGS(rm,0,0,0,16,PZS_MASK);
     return (u_int16_t)rm;
 }
-u_int32_t exec_sar_32b(Bit32s rm,u_int8_t count)  //SAR
+u_int32_t exec_sar_32b(int32_t rm,u_int8_t count)  //SAR
 {
     u_int8_t tmp = count;
     while(tmp!=0)
@@ -2593,7 +2593,7 @@ u_int8_t exec_shift_8b(u_int8_t index,u_int8_t src,u_int8_t count){
 		case 1: return exec_ror_8b(src,count);
 		case 4: return exec_sal_8b(src,count);
 		case 5: return exec_shr_8b(src,count);
-		case 7: return exec_sar_8b((Bit8s)src,count);
+		case 7: return exec_sar_8b((int8_t)src,count);
 	}
 }
 
@@ -2603,7 +2603,7 @@ u_int16_t exec_shift_16b(u_int8_t index,u_int16_t src,u_int8_t count){
 		case 1: return exec_ror_16b(src,count);
 		case 4: return exec_sal_16b(src,count);
 		case 5: return exec_shr_16b(src,count);
-		case 7: return exec_sar_16b((Bit16s)src,count);
+		case 7: return exec_sar_16b((int16_t)src,count);
 	}
 }
 
@@ -2613,6 +2613,6 @@ u_int32_t exec_shift_32b(u_int8_t index,u_int32_t src,u_int8_t count){
 		case 1: return exec_ror_32b(src,count);
 		case 4: return exec_sal_32b(src,count);
 		case 5: return exec_shr_32b(src,count);
-		case 7: return exec_sar_32b((Bit32s)src,count);
+		case 7: return exec_sar_32b((int32_t)src,count);
 	}
 }
