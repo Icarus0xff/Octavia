@@ -1,0 +1,4 @@
+#!/bin/sh
+gcc -o cmodel *.c
+as --32 test.s -o mem_rom
+./cmodel
