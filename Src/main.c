@@ -3,30 +3,30 @@
   /*
     Initialize variables.
   */
-  Bit8u *memBase = 0;
-  Bit8u *memBase_rtl = 0;
+  u_int8_t *memBase = 0;
+  u_int8_t *memBase_rtl = 0;
   Sreg sreg[6] = {0};
-  Bit8u *curInst = 0;  //current instruction location
-  Bit8u prefixLen = 0;  //prefix length
-  Bit8u prefix_seg = 0;  //segment override
-  Bit8u prefix_lock = 0;	//lock
-  Bit8u prefix_rep = 0;	//repeat
-  Bit8u prefix_2byte = 0;   //2byte opcode
-  Bit8u prefix_operand = 0; //operand size
-  Bit8u prefix_address = 0;  //address size
+  u_int8_t *curInst = 0;  //current instruction location
+  u_int8_t prefixLen = 0;  //prefix length
+  u_int8_t prefix_seg = 0;  //segment override
+  u_int8_t prefix_lock = 0;	//lock
+  u_int8_t prefix_rep = 0;	//repeat
+  u_int8_t prefix_2byte = 0;   //2byte opcode
+  u_int8_t prefix_operand = 0; //operand size
+  u_int8_t prefix_address = 0;  //address size
   Reg ipreg = {0};
 
-  Bit8u instLen = 0;
-  Bit8u reg1 = 0, reg2 = 0;
-  Bit8u rm_is_reg = 0;
+  u_int8_t instLen = 0;
+  u_int8_t reg1 = 0, reg2 = 0;
+  u_int8_t rm_is_reg = 0;
   Bit16u eAddr16 = 0;
   Bit32u eAddr32 = 0;
-  Bit8u eAddr_sreg = 0;
+  u_int8_t eAddr_sreg = 0;
   Bit32u linear_addr = 0;
 
   Reg greg[8] = {0};
-  Bit8u immLen = 0;
-  Bit8u cpl = 0;
+  u_int8_t immLen = 0;
+  u_int8_t cpl = 0;
   Sreg ldtr = {0}, tr = {0};
   GlobalSreg gdtr = {0}, idtr = {0};
   Bit32u eflags = 0;
