@@ -111,269 +111,269 @@ cmodel/fast:
 	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/build
 .PHONY : cmodel/fast
 
-home/augustus/Source/cpu_emulator/Src/address.o: home/augustus/Source/cpu_emulator/Src/address.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/address.o
+home/augustus/Source/cpu_emulator/src/address.o: home/augustus/Source/cpu_emulator/src/address.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/address.o
 
 # target to build an object file
-home/augustus/Source/cpu_emulator/Src/address.c.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/address.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/address.c.o
+home/augustus/Source/cpu_emulator/src/address.c.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/address.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/address.c.o
 
-home/augustus/Source/cpu_emulator/Src/address.i: home/augustus/Source/cpu_emulator/Src/address.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/address.i
+home/augustus/Source/cpu_emulator/src/address.i: home/augustus/Source/cpu_emulator/src/address.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/address.i
 
 # target to preprocess a source file
-home/augustus/Source/cpu_emulator/Src/address.c.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/address.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/address.c.i
+home/augustus/Source/cpu_emulator/src/address.c.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/address.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/address.c.i
 
-home/augustus/Source/cpu_emulator/Src/address.s: home/augustus/Source/cpu_emulator/Src/address.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/address.s
+home/augustus/Source/cpu_emulator/src/address.s: home/augustus/Source/cpu_emulator/src/address.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/address.s
 
 # target to generate assembly for a file
-home/augustus/Source/cpu_emulator/Src/address.c.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/address.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/address.c.s
+home/augustus/Source/cpu_emulator/src/address.c.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/address.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/address.c.s
 
-home/augustus/Source/cpu_emulator/Src/cpu_loop.o: home/augustus/Source/cpu_emulator/Src/cpu_loop.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/cpu_loop.o
+home/augustus/Source/cpu_emulator/src/cpu_loop.o: home/augustus/Source/cpu_emulator/src/cpu_loop.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/cpu_loop.o
 
 # target to build an object file
-home/augustus/Source/cpu_emulator/Src/cpu_loop.c.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/cpu_loop.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/cpu_loop.c.o
+home/augustus/Source/cpu_emulator/src/cpu_loop.c.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/cpu_loop.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/cpu_loop.c.o
 
-home/augustus/Source/cpu_emulator/Src/cpu_loop.i: home/augustus/Source/cpu_emulator/Src/cpu_loop.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/cpu_loop.i
+home/augustus/Source/cpu_emulator/src/cpu_loop.i: home/augustus/Source/cpu_emulator/src/cpu_loop.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/cpu_loop.i
 
 # target to preprocess a source file
-home/augustus/Source/cpu_emulator/Src/cpu_loop.c.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/cpu_loop.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/cpu_loop.c.i
+home/augustus/Source/cpu_emulator/src/cpu_loop.c.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/cpu_loop.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/cpu_loop.c.i
 
-home/augustus/Source/cpu_emulator/Src/cpu_loop.s: home/augustus/Source/cpu_emulator/Src/cpu_loop.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/cpu_loop.s
+home/augustus/Source/cpu_emulator/src/cpu_loop.s: home/augustus/Source/cpu_emulator/src/cpu_loop.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/cpu_loop.s
 
 # target to generate assembly for a file
-home/augustus/Source/cpu_emulator/Src/cpu_loop.c.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/cpu_loop.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/cpu_loop.c.s
+home/augustus/Source/cpu_emulator/src/cpu_loop.c.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/cpu_loop.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/cpu_loop.c.s
 
-home/augustus/Source/cpu_emulator/Src/dec_modrm.o: home/augustus/Source/cpu_emulator/Src/dec_modrm.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_modrm.o
+home/augustus/Source/cpu_emulator/src/dec_modrm.o: home/augustus/Source/cpu_emulator/src/dec_modrm.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_modrm.o
 
 # target to build an object file
-home/augustus/Source/cpu_emulator/Src/dec_modrm.c.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/dec_modrm.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_modrm.c.o
+home/augustus/Source/cpu_emulator/src/dec_modrm.c.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/dec_modrm.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_modrm.c.o
 
-home/augustus/Source/cpu_emulator/Src/dec_modrm.i: home/augustus/Source/cpu_emulator/Src/dec_modrm.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_modrm.i
+home/augustus/Source/cpu_emulator/src/dec_modrm.i: home/augustus/Source/cpu_emulator/src/dec_modrm.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_modrm.i
 
 # target to preprocess a source file
-home/augustus/Source/cpu_emulator/Src/dec_modrm.c.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/dec_modrm.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_modrm.c.i
+home/augustus/Source/cpu_emulator/src/dec_modrm.c.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/dec_modrm.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_modrm.c.i
 
-home/augustus/Source/cpu_emulator/Src/dec_modrm.s: home/augustus/Source/cpu_emulator/Src/dec_modrm.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_modrm.s
+home/augustus/Source/cpu_emulator/src/dec_modrm.s: home/augustus/Source/cpu_emulator/src/dec_modrm.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_modrm.s
 
 # target to generate assembly for a file
-home/augustus/Source/cpu_emulator/Src/dec_modrm.c.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/dec_modrm.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_modrm.c.s
+home/augustus/Source/cpu_emulator/src/dec_modrm.c.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/dec_modrm.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_modrm.c.s
 
-home/augustus/Source/cpu_emulator/Src/dec_opcode.o: home/augustus/Source/cpu_emulator/Src/dec_opcode.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_opcode.o
+home/augustus/Source/cpu_emulator/src/dec_opcode.o: home/augustus/Source/cpu_emulator/src/dec_opcode.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_opcode.o
 
 # target to build an object file
-home/augustus/Source/cpu_emulator/Src/dec_opcode.c.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/dec_opcode.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_opcode.c.o
+home/augustus/Source/cpu_emulator/src/dec_opcode.c.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/dec_opcode.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_opcode.c.o
 
-home/augustus/Source/cpu_emulator/Src/dec_opcode.i: home/augustus/Source/cpu_emulator/Src/dec_opcode.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_opcode.i
+home/augustus/Source/cpu_emulator/src/dec_opcode.i: home/augustus/Source/cpu_emulator/src/dec_opcode.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_opcode.i
 
 # target to preprocess a source file
-home/augustus/Source/cpu_emulator/Src/dec_opcode.c.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/dec_opcode.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_opcode.c.i
+home/augustus/Source/cpu_emulator/src/dec_opcode.c.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/dec_opcode.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_opcode.c.i
 
-home/augustus/Source/cpu_emulator/Src/dec_opcode.s: home/augustus/Source/cpu_emulator/Src/dec_opcode.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_opcode.s
+home/augustus/Source/cpu_emulator/src/dec_opcode.s: home/augustus/Source/cpu_emulator/src/dec_opcode.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_opcode.s
 
 # target to generate assembly for a file
-home/augustus/Source/cpu_emulator/Src/dec_opcode.c.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/dec_opcode.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_opcode.c.s
+home/augustus/Source/cpu_emulator/src/dec_opcode.c.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/dec_opcode.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_opcode.c.s
 
-home/augustus/Source/cpu_emulator/Src/dec_prefix.o: home/augustus/Source/cpu_emulator/Src/dec_prefix.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_prefix.o
+home/augustus/Source/cpu_emulator/src/dec_prefix.o: home/augustus/Source/cpu_emulator/src/dec_prefix.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_prefix.o
 
 # target to build an object file
-home/augustus/Source/cpu_emulator/Src/dec_prefix.c.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/dec_prefix.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_prefix.c.o
+home/augustus/Source/cpu_emulator/src/dec_prefix.c.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/dec_prefix.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_prefix.c.o
 
-home/augustus/Source/cpu_emulator/Src/dec_prefix.i: home/augustus/Source/cpu_emulator/Src/dec_prefix.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_prefix.i
+home/augustus/Source/cpu_emulator/src/dec_prefix.i: home/augustus/Source/cpu_emulator/src/dec_prefix.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_prefix.i
 
 # target to preprocess a source file
-home/augustus/Source/cpu_emulator/Src/dec_prefix.c.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/dec_prefix.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_prefix.c.i
+home/augustus/Source/cpu_emulator/src/dec_prefix.c.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/dec_prefix.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_prefix.c.i
 
-home/augustus/Source/cpu_emulator/Src/dec_prefix.s: home/augustus/Source/cpu_emulator/Src/dec_prefix.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_prefix.s
+home/augustus/Source/cpu_emulator/src/dec_prefix.s: home/augustus/Source/cpu_emulator/src/dec_prefix.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_prefix.s
 
 # target to generate assembly for a file
-home/augustus/Source/cpu_emulator/Src/dec_prefix.c.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/dec_prefix.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/dec_prefix.c.s
+home/augustus/Source/cpu_emulator/src/dec_prefix.c.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/dec_prefix.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/dec_prefix.c.s
 
-home/augustus/Source/cpu_emulator/Src/exec_helper.o: home/augustus/Source/cpu_emulator/Src/exec_helper.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/exec_helper.o
+home/augustus/Source/cpu_emulator/src/exec_helper.o: home/augustus/Source/cpu_emulator/src/exec_helper.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/exec_helper.o
 
 # target to build an object file
-home/augustus/Source/cpu_emulator/Src/exec_helper.c.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/exec_helper.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/exec_helper.c.o
+home/augustus/Source/cpu_emulator/src/exec_helper.c.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/exec_helper.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/exec_helper.c.o
 
-home/augustus/Source/cpu_emulator/Src/exec_helper.i: home/augustus/Source/cpu_emulator/Src/exec_helper.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/exec_helper.i
+home/augustus/Source/cpu_emulator/src/exec_helper.i: home/augustus/Source/cpu_emulator/src/exec_helper.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/exec_helper.i
 
 # target to preprocess a source file
-home/augustus/Source/cpu_emulator/Src/exec_helper.c.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/exec_helper.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/exec_helper.c.i
+home/augustus/Source/cpu_emulator/src/exec_helper.c.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/exec_helper.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/exec_helper.c.i
 
-home/augustus/Source/cpu_emulator/Src/exec_helper.s: home/augustus/Source/cpu_emulator/Src/exec_helper.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/exec_helper.s
+home/augustus/Source/cpu_emulator/src/exec_helper.s: home/augustus/Source/cpu_emulator/src/exec_helper.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/exec_helper.s
 
 # target to generate assembly for a file
-home/augustus/Source/cpu_emulator/Src/exec_helper.c.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/exec_helper.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/exec_helper.c.s
+home/augustus/Source/cpu_emulator/src/exec_helper.c.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/exec_helper.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/exec_helper.c.s
 
-home/augustus/Source/cpu_emulator/Src/flags.o: home/augustus/Source/cpu_emulator/Src/flags.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/flags.o
+home/augustus/Source/cpu_emulator/src/flags.o: home/augustus/Source/cpu_emulator/src/flags.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/flags.o
 
 # target to build an object file
-home/augustus/Source/cpu_emulator/Src/flags.c.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/flags.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/flags.c.o
+home/augustus/Source/cpu_emulator/src/flags.c.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/flags.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/flags.c.o
 
-home/augustus/Source/cpu_emulator/Src/flags.i: home/augustus/Source/cpu_emulator/Src/flags.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/flags.i
+home/augustus/Source/cpu_emulator/src/flags.i: home/augustus/Source/cpu_emulator/src/flags.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/flags.i
 
 # target to preprocess a source file
-home/augustus/Source/cpu_emulator/Src/flags.c.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/flags.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/flags.c.i
+home/augustus/Source/cpu_emulator/src/flags.c.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/flags.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/flags.c.i
 
-home/augustus/Source/cpu_emulator/Src/flags.s: home/augustus/Source/cpu_emulator/Src/flags.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/flags.s
+home/augustus/Source/cpu_emulator/src/flags.s: home/augustus/Source/cpu_emulator/src/flags.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/flags.s
 
 # target to generate assembly for a file
-home/augustus/Source/cpu_emulator/Src/flags.c.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/flags.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/flags.c.s
+home/augustus/Source/cpu_emulator/src/flags.c.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/flags.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/flags.c.s
 
-home/augustus/Source/cpu_emulator/Src/main.o: home/augustus/Source/cpu_emulator/Src/main.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/main.o
+home/augustus/Source/cpu_emulator/src/main.o: home/augustus/Source/cpu_emulator/src/main.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/main.o
 
 # target to build an object file
-home/augustus/Source/cpu_emulator/Src/main.c.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/main.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/main.c.o
+home/augustus/Source/cpu_emulator/src/main.c.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/main.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/main.c.o
 
-home/augustus/Source/cpu_emulator/Src/main.i: home/augustus/Source/cpu_emulator/Src/main.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/main.i
+home/augustus/Source/cpu_emulator/src/main.i: home/augustus/Source/cpu_emulator/src/main.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/main.i
 
 # target to preprocess a source file
-home/augustus/Source/cpu_emulator/Src/main.c.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/main.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/main.c.i
+home/augustus/Source/cpu_emulator/src/main.c.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/main.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/main.c.i
 
-home/augustus/Source/cpu_emulator/Src/main.s: home/augustus/Source/cpu_emulator/Src/main.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/main.s
+home/augustus/Source/cpu_emulator/src/main.s: home/augustus/Source/cpu_emulator/src/main.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/main.s
 
 # target to generate assembly for a file
-home/augustus/Source/cpu_emulator/Src/main.c.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/main.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/main.c.s
+home/augustus/Source/cpu_emulator/src/main.c.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/main.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/main.c.s
 
-home/augustus/Source/cpu_emulator/Src/memory.o: home/augustus/Source/cpu_emulator/Src/memory.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/memory.o
+home/augustus/Source/cpu_emulator/src/memory.o: home/augustus/Source/cpu_emulator/src/memory.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/memory.o
 
 # target to build an object file
-home/augustus/Source/cpu_emulator/Src/memory.c.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/memory.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/memory.c.o
+home/augustus/Source/cpu_emulator/src/memory.c.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/memory.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/memory.c.o
 
-home/augustus/Source/cpu_emulator/Src/memory.i: home/augustus/Source/cpu_emulator/Src/memory.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/memory.i
+home/augustus/Source/cpu_emulator/src/memory.i: home/augustus/Source/cpu_emulator/src/memory.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/memory.i
 
 # target to preprocess a source file
-home/augustus/Source/cpu_emulator/Src/memory.c.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/memory.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/memory.c.i
+home/augustus/Source/cpu_emulator/src/memory.c.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/memory.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/memory.c.i
 
-home/augustus/Source/cpu_emulator/Src/memory.s: home/augustus/Source/cpu_emulator/Src/memory.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/memory.s
+home/augustus/Source/cpu_emulator/src/memory.s: home/augustus/Source/cpu_emulator/src/memory.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/memory.s
 
 # target to generate assembly for a file
-home/augustus/Source/cpu_emulator/Src/memory.c.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/memory.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/memory.c.s
+home/augustus/Source/cpu_emulator/src/memory.c.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/memory.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/memory.c.s
 
-home/augustus/Source/cpu_emulator/Src/register.o: home/augustus/Source/cpu_emulator/Src/register.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/register.o
+home/augustus/Source/cpu_emulator/src/register.o: home/augustus/Source/cpu_emulator/src/register.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/register.o
 
 # target to build an object file
-home/augustus/Source/cpu_emulator/Src/register.c.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/register.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/register.c.o
+home/augustus/Source/cpu_emulator/src/register.c.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/register.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/register.c.o
 
-home/augustus/Source/cpu_emulator/Src/register.i: home/augustus/Source/cpu_emulator/Src/register.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/register.i
+home/augustus/Source/cpu_emulator/src/register.i: home/augustus/Source/cpu_emulator/src/register.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/register.i
 
 # target to preprocess a source file
-home/augustus/Source/cpu_emulator/Src/register.c.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/register.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/register.c.i
+home/augustus/Source/cpu_emulator/src/register.c.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/register.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/register.c.i
 
-home/augustus/Source/cpu_emulator/Src/register.s: home/augustus/Source/cpu_emulator/Src/register.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/register.s
+home/augustus/Source/cpu_emulator/src/register.s: home/augustus/Source/cpu_emulator/src/register.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/register.s
 
 # target to generate assembly for a file
-home/augustus/Source/cpu_emulator/Src/register.c.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/register.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/register.c.s
+home/augustus/Source/cpu_emulator/src/register.c.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/register.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/register.c.s
 
-home/augustus/Source/cpu_emulator/Src/segment.o: home/augustus/Source/cpu_emulator/Src/segment.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/segment.o
+home/augustus/Source/cpu_emulator/src/segment.o: home/augustus/Source/cpu_emulator/src/segment.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/segment.o
 
 # target to build an object file
-home/augustus/Source/cpu_emulator/Src/segment.c.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/segment.c.o
-.PHONY : home/augustus/Source/cpu_emulator/Src/segment.c.o
+home/augustus/Source/cpu_emulator/src/segment.c.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/segment.c.o
+.PHONY : home/augustus/Source/cpu_emulator/src/segment.c.o
 
-home/augustus/Source/cpu_emulator/Src/segment.i: home/augustus/Source/cpu_emulator/Src/segment.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/segment.i
+home/augustus/Source/cpu_emulator/src/segment.i: home/augustus/Source/cpu_emulator/src/segment.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/segment.i
 
 # target to preprocess a source file
-home/augustus/Source/cpu_emulator/Src/segment.c.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/segment.c.i
-.PHONY : home/augustus/Source/cpu_emulator/Src/segment.c.i
+home/augustus/Source/cpu_emulator/src/segment.c.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/segment.c.i
+.PHONY : home/augustus/Source/cpu_emulator/src/segment.c.i
 
-home/augustus/Source/cpu_emulator/Src/segment.s: home/augustus/Source/cpu_emulator/Src/segment.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/segment.s
+home/augustus/Source/cpu_emulator/src/segment.s: home/augustus/Source/cpu_emulator/src/segment.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/segment.s
 
 # target to generate assembly for a file
-home/augustus/Source/cpu_emulator/Src/segment.c.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/Src/segment.c.s
-.PHONY : home/augustus/Source/cpu_emulator/Src/segment.c.s
+home/augustus/Source/cpu_emulator/src/segment.c.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/segment.c.s
+.PHONY : home/augustus/Source/cpu_emulator/src/segment.c.s
 
 # Help Target
 help:
@@ -384,39 +384,39 @@ help:
 	@echo "... cmodel"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... home/augustus/Source/cpu_emulator/Src/address.o"
-	@echo "... home/augustus/Source/cpu_emulator/Src/address.i"
-	@echo "... home/augustus/Source/cpu_emulator/Src/address.s"
-	@echo "... home/augustus/Source/cpu_emulator/Src/cpu_loop.o"
-	@echo "... home/augustus/Source/cpu_emulator/Src/cpu_loop.i"
-	@echo "... home/augustus/Source/cpu_emulator/Src/cpu_loop.s"
-	@echo "... home/augustus/Source/cpu_emulator/Src/dec_modrm.o"
-	@echo "... home/augustus/Source/cpu_emulator/Src/dec_modrm.i"
-	@echo "... home/augustus/Source/cpu_emulator/Src/dec_modrm.s"
-	@echo "... home/augustus/Source/cpu_emulator/Src/dec_opcode.o"
-	@echo "... home/augustus/Source/cpu_emulator/Src/dec_opcode.i"
-	@echo "... home/augustus/Source/cpu_emulator/Src/dec_opcode.s"
-	@echo "... home/augustus/Source/cpu_emulator/Src/dec_prefix.o"
-	@echo "... home/augustus/Source/cpu_emulator/Src/dec_prefix.i"
-	@echo "... home/augustus/Source/cpu_emulator/Src/dec_prefix.s"
-	@echo "... home/augustus/Source/cpu_emulator/Src/exec_helper.o"
-	@echo "... home/augustus/Source/cpu_emulator/Src/exec_helper.i"
-	@echo "... home/augustus/Source/cpu_emulator/Src/exec_helper.s"
-	@echo "... home/augustus/Source/cpu_emulator/Src/flags.o"
-	@echo "... home/augustus/Source/cpu_emulator/Src/flags.i"
-	@echo "... home/augustus/Source/cpu_emulator/Src/flags.s"
-	@echo "... home/augustus/Source/cpu_emulator/Src/main.o"
-	@echo "... home/augustus/Source/cpu_emulator/Src/main.i"
-	@echo "... home/augustus/Source/cpu_emulator/Src/main.s"
-	@echo "... home/augustus/Source/cpu_emulator/Src/memory.o"
-	@echo "... home/augustus/Source/cpu_emulator/Src/memory.i"
-	@echo "... home/augustus/Source/cpu_emulator/Src/memory.s"
-	@echo "... home/augustus/Source/cpu_emulator/Src/register.o"
-	@echo "... home/augustus/Source/cpu_emulator/Src/register.i"
-	@echo "... home/augustus/Source/cpu_emulator/Src/register.s"
-	@echo "... home/augustus/Source/cpu_emulator/Src/segment.o"
-	@echo "... home/augustus/Source/cpu_emulator/Src/segment.i"
-	@echo "... home/augustus/Source/cpu_emulator/Src/segment.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/address.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/address.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/address.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/cpu_loop.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/cpu_loop.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/cpu_loop.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/dec_modrm.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/dec_modrm.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/dec_modrm.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/dec_opcode.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/dec_opcode.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/dec_opcode.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/dec_prefix.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/dec_prefix.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/dec_prefix.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/exec_helper.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/exec_helper.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/exec_helper.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/flags.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/flags.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/flags.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/main.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/main.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/main.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/memory.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/memory.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/memory.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/register.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/register.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/register.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/segment.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/segment.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/segment.s"
 .PHONY : help
 
 
