@@ -49,10 +49,10 @@ extern Reg ipreg;
 **********************************/
 #define SEG_NULL 7
 /*#define SegValidCache  (0x01)
-#define SegAccessROK   (0x02)
-#define SegAccessWOK   (0x04)
-#define SegAccessROK4G (0x08)
-#define SegAccessWOK4G (0x10)*/
+  #define SegAccessROK   (0x02)
+  #define SegAccessWOK   (0x04)
+  #define SegAccessROK4G (0x08)
+  #define SegAccessWOK4G (0x10)*/
 // For system & gate descriptors:
 #define GATE_TYPE_NONE                       (0x0)
 #define SYS_SEGMENT_AVAIL_286_TSS            (0x1)
@@ -62,12 +62,12 @@ extern Reg ipreg;
 #define TASK_GATE                            (0x5)
 #define INTERRUPT_GATE_286                   (0x6)
 #define TRAP_GATE_286                        (0x7)
-                                              /* 0x8 reserved */
+/* 0x8 reserved */
 #define SYS_SEGMENT_AVAIL_386_TSS            (0x9)
-                                              /* 0xa reserved */
+/* 0xa reserved */
 #define SYS_SEGMENT_BUSY_386_TSS             (0xb)
 #define CALL_GATE_386                        (0xc)
-                                              /* 0xd reserved */
+/* 0xd reserved */
 #define INTERRUPT_GATE_386                   (0xe)
 #define TRAP_GATE_386                        (0xf)
 
@@ -90,12 +90,12 @@ extern Reg ipreg;
 #define CODE_EXEC_READ_CONFORMING_ACCESSED   (0xf)
 extern Sreg sreg[6];
 enum{
-	SEG_REG_ES=0,
-	SEG_REG_CS=1,
-	SEG_REG_SS=2,
-	SEG_REG_DS=3,
-	SEG_REG_FS=4,
-	SEG_REG_GS=5
+  SEG_REG_ES=0,
+  SEG_REG_CS=1,
+  SEG_REG_SS=2,
+  SEG_REG_DS=3,
+  SEG_REG_FS=4,
+  SEG_REG_GS=5
 };
 extern GlobalSreg gdtr,idtr;
 extern Sreg ldtr,tr;
@@ -170,35 +170,35 @@ extern u_int32_t eflags;
 #define PZS_MASK (SF_MASK|ZF_MASK|PF_MASK)
 #define PAZSO_MASK (PF_MASK|AF_MASK|ZF_MASK|SF_MASK|OF_MASK)
 //const u_int32_t EflagsValidMASK=0x003f7fd5;
-#define SET_EFLAGS(result,dst,src,add_or_sub,bits,flag_mask){\
-	u_int32_t set_flags=0; \
-	if(result==0) set_flags|=1<<ZF; \
-	if(result&(1<<bits-1)) set_flags|=1<<SF;\
-	u_int8_t bitNum=0,i;\
-	for(i=0;i<8;i++){\
-		 bitNum+=(result&(1<<i))?1:0;\
-	}\
-	if(bitNum%2==0)\
-		set_flags|=1<<PF;\
-	if(add_or_sub==1){ \
-		long tmp=(long)dst+src; \
-		if(tmp!=result) set_flags|=1<<CF;\
-		tmp=(dst&0x0f)+(src&0x0f);\
-		if(tmp&0x10) set_flags|=1<<AF;\
-		if((src&(1<<bits-1))==(dst&(1<<bits-1))&&(dst&(1<<bits-1))!=(result&(1<<bits-1)))\
-			set_flags|=1<<OF;\
-	}\
-	else if(add_or_sub==2){\
-		long tmp=(long)dst-src; \
-		if(tmp!=result) set_flags|=1<<CF;\
-		tmp=(dst&0x0f)-(src&0x0f);\
-		if(tmp&0x10) set_flags|=1<<AF;\
-		if((src&(1<<bits-1))!=(dst&(1<<bits-1))&&(dst&(1<<bits-1))!=(result&(1<<bits-1)))\
-			set_flags|=1<<OF;\
-	}\
-	eflags&=~flag_mask; \
-	eflags|=set_flags; \
-}
+#define SET_EFLAGS(result,dst,src,add_or_sub,bits,flag_mask){		\
+    u_int32_t set_flags=0;						\
+    if(result==0) set_flags|=1<<ZF;					\
+    if(result&(1<<bits-1)) set_flags|=1<<SF;				\
+    u_int8_t bitNum=0,i;						\
+    for(i=0;i<8;i++){							\
+      bitNum+=(result&(1<<i))?1:0;					\
+    }									\
+    if(bitNum%2==0)							\
+      set_flags|=1<<PF;							\
+    if(add_or_sub==1){							\
+      long tmp=(long)dst+src;						\
+      if(tmp!=result) set_flags|=1<<CF;					\
+      tmp=(dst&0x0f)+(src&0x0f);					\
+      if(tmp&0x10) set_flags|=1<<AF;					\
+      if((src&(1<<bits-1))==(dst&(1<<bits-1))&&(dst&(1<<bits-1))!=(result&(1<<bits-1)))	\
+	set_flags|=1<<OF;						\
+    }									\
+    else if(add_or_sub==2){						\
+      long tmp=(long)dst-src;						\
+      if(tmp!=result) set_flags|=1<<CF;					\
+      tmp=(dst&0x0f)-(src&0x0f);					\
+      if(tmp&0x10) set_flags|=1<<AF;					\
+      if((src&(1<<bits-1))!=(dst&(1<<bits-1))&&(dst&(1<<bits-1))!=(result&(1<<bits-1)))	\
+	set_flags|=1<<OF;						\
+    }									\
+    eflags&=~flag_mask;							\
+    eflags|=set_flags;							\
+  }
 
 /**************************************
 	Control register
@@ -231,7 +231,7 @@ extern u_int32_t cr[5];
 /**************************************
 	Debug register
 **************************************/
-extern u_int32_t dr[8];
+  extern u_int32_t dr[8];
 #define DR7_GD_MASK (1<<13)  //enable the dr protection condition flagged by BD of DR6
 #define DR7_LE_MASK (1<<8)  //local exact data breakpoint match
 #define DR7_GE_MASK (1<<9)  //global exact data breakpoint match

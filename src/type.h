@@ -27,9 +27,9 @@ typedef struct{
   union{
     u_int16_t selector;
     struct{
-      u_int16_t   rpl:2;
-      u_int16_t   ti:1;
-      u_int16_t 	index:13;
+      u_int16_t rpl:2;
+      u_int16_t ti:1;
+      u_int16_t index:13;
     };
   };
   u_int8_t valid;

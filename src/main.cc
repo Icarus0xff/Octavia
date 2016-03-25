@@ -33,7 +33,8 @@ u_int32_t eflags = 0;
 u_int32_t cr[5] = {0};
 u_int32_t dr[8] = {0};
 
-int main(){
+int main(int argc, char *argv[])
+{
   init();
   cpu_loop();
   return 0;
