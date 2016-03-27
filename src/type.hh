@@ -28,7 +28,8 @@ namespace CpuRegisterType
   {
     u8 _byte;
   };
-  
+
+  //Todo add ‘operator=’ func.
   class Register
   {
   public:
@@ -43,8 +44,6 @@ namespace CpuRegisterType
       };
       Word idle;
     };
-    Register();
-    virtual ~Register();
   };
 }
 #endif
