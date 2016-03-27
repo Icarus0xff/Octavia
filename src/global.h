@@ -1,7 +1,7 @@
 #ifndef GLOBAL_HEADER
 #define GLOBAL_HEADER
 #include "type.h"
-#include <stdlib.h>
+#include <cstdlib>
 /********************************
 	general register
 *********************************/

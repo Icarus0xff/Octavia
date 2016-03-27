@@ -1,18 +1,28 @@
+/* 
+ * Authors: Augustus Liu 
+ * Sun Mar 27 21:39:46 2016
+ */
 #ifndef TYPE_HEADER
 #define TYPE_HEADER
 #include <cstdio>
 #include <cstdlib>
 
 //general 8/16/32bit register
-typedef struct{
-  union{
-    struct{
+typedef struct
+{
+  union
+  {
+    struct
+    {
       u_int32_t erx;                 //32 bit register
     }dword;
-    struct{
-      union{
+    struct
+    {
+      union
+      {
 	u_int16_t rx;
-	struct{
+	struct
+	{
 	  u_int8_t rl;             //low 8-bit register
 	  u_int8_t rh;
 	} byte;

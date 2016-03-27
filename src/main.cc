@@ -1,5 +1,5 @@
 #include "global.h"
-
+#include "type.hh"
 /*
   Initialize variables.
 */
@@ -33,8 +33,10 @@ u_int32_t eflags = 0;
 u_int32_t cr[5] = {0};
 u_int32_t dr[8] = {0};
 
-int main(int argc, char *argv[])
+int
+main(int argc, char *argv[])
 {
+  CpuRegisterType::Register reg;
   init();
   cpu_loop();
   return 0;
@@ -87,11 +89,5 @@ void print(){
   DEBUG("ESI=0x%08x\n",ESI);
   DEBUG("EDI=0x%08x\n",EDI);
   DEBUG("EFLAGS=0x%08x\n",eflags);
-  /*DEBUG("CS=0x%x\n",CS.selector);
-    DEBUG("DS=0x%x\n",DS.selector);
-    DEBUG("FS=0x%x\n",FS.selector);
-    DEBUG("GS=0x%x\n",GS.selector);
-    DEBUG("SS=0x%x\n",SS.selector);
-    DEBUG("ES=0x%x\n",ES.selector);*/
 }
 
