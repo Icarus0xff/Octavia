@@ -30,6 +30,7 @@ namespace CpuRegisterType
   };
 
   //Todo add ‘operator=’ func.
+  //
   class Register
   {
   public:
