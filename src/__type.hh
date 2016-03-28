@@ -14,6 +14,9 @@ namespace CpuRegisterType
   typedef u_int16_t u16;
   typedef u_int8_t u8;
 
+  //When a Fundamentaldatatype is set up, an underlying class if created which holds
+  //the actual data. This class inherits from it, and privides the implementations for various operators.
+  //Setting things up this way prevents having to redefine these functions in every different Fundamentaldatatype.
   namespace FundamentalDataTypeBackend{
     template <class Type, class Base>
     class FundamentalDataTypeOperators : public Base
@@ -62,8 +65,6 @@ namespace CpuRegisterType
   DataType(u16, Word);
   DataType(u8, Byte);
 
-  //Todo add ‘operator=’ func.
-  //
   class Register
   {
   public:
