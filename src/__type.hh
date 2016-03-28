@@ -14,24 +14,60 @@ namespace CpuRegisterType
   typedef u_int16_t u16;
   typedef u_int8_t u8;
 
+  namespace FundamentalDataTypeBackend{
+    template <class Type, class Base>
+    class FundamentalDataTypeOperators : public Base
+    {
+    public:
+      FundamentalDataTypeOperators(Type const & _data)
+      {
+	Base::__data = _data;
+      }
+
+      Type &
+      operator=(Type const & _data)
+      {
+	Base::__data = _data;
+	return Base::__data;
+      }
+      
+      Type &
+      operator=(FundamentalDataTypeOperators const & other)
+      {
+	Base::__data = other;
+	return Base::__data;
+      }
+      
+      FundamentalDataTypeOperators() {};
+    };
+  }
+
 #define __FundamentalDataTypes(type, name) \
   class FundamentalDataTypeUnderlyingClass##name \
   { \
   public: \
     type __data; \
+    typedef type __DataType; \
+    FundamentalDataTypeUnderlyingClass##name() {}; \
   }; \
-  typedef FundamentalDataTypeUnderlyingClass##name name;
+  typedef FundamentalDataTypeBackend::FundamentalDataTypeOperators< \
+    FundamentalDataTypeUnderlyingClass##name::__DataType, \
+    FundamentalDataTypeUnderlyingClass##name> name;       								   
 
+//Use this to define a Fundamentaldatatype like Dword, Byte, etc.
+#define DataType(type, name) __FundamentalDataTypes(type, name)
 
-  __FundamentalDataTypes(u32, Dword)
-  __FundamentalDataTypes(u16, Word)
-  __FundamentalDataTypes(u8, Byte)
+  
+  DataType(u32, Dword);
+  DataType(u16, Word);
+  DataType(u8, Byte);
 
   //Todo add ‘operator=’ func.
   //
   class Register
   {
   public:
+    Register() {};
     union
     {
       Dword erx;
@@ -43,8 +79,6 @@ namespace CpuRegisterType
       };
       Word idle;
     };
-    
-    
   };
 }
 #endif

@@ -5,7 +5,7 @@ u_int8_t address_size(){
 		u_int8_t addressSize=prefix_address?32:16;
 		return addressSize;
 	}
-	DEBUG("cs.d_b:%d,prefix:%d\n",CSDesc.d_b,prefix_address);
+	DEBUG("cs.d_b:%ld,prefix:%d\n",CSDesc.d_b,prefix_address);
 	return ((CSDesc.d_b-prefix_address)==0)?16:32;
 } 
 u_int8_t operand_size(){

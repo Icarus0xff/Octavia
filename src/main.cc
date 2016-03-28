@@ -2,7 +2,7 @@
 #include "__type.hh"
 
 /*
-  Initialize variables.
+  Initialize glabal variables.
 */
 u_int8_t *memBase = 0;
 u_int8_t *memBase_rtl = 0;
@@ -37,7 +37,6 @@ u_int32_t dr[8] = {0};
 int
 main(int argc, char *argv[])
 {
-  CpuRegisterType::Register reg;
   init();
   cpu_loop();
   return 0;
