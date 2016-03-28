@@ -1,5 +1,5 @@
 #include "global.h"
-#include "cmodel.hh"
+#include "__dec_opcode.hh"
 
 //main cpu loop
 void cpu_loop(){

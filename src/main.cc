@@ -1,5 +1,5 @@
 #include "global.h"
-#include "type.hh"
+#include "__type.hh"
 
 /*
   Initialize variables.
