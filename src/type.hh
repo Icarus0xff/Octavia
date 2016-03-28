@@ -13,21 +13,19 @@ namespace CpuRegisterType
   typedef u_int32_t u32;
   typedef u_int16_t u16;
   typedef u_int8_t u8;
-  
-  struct Dword
-  {
-    u32 _dowrd;
-  };
 
-  struct Word
-  {
-    u16 _word;
-  };
+#define __FundamentalDataTypes(type, name) \
+  class FundamentalDataTypeUnderlyingClass##name \
+  { \
+  public: \
+    type __data; \
+  }; \
+  typedef FundamentalDataTypeUnderlyingClass##name name;
 
-  struct Byte
-  {
-    u8 _byte;
-  };
+
+  __FundamentalDataTypes(u32, Dword)
+  __FundamentalDataTypes(u16, Word)
+  __FundamentalDataTypes(u8, Byte)
 
   //Todo add ‘operator=’ func.
   //
@@ -45,6 +43,8 @@ namespace CpuRegisterType
       };
       Word idle;
     };
+    
+    
   };
 }
 #endif
