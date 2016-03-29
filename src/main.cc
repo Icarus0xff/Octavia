@@ -37,59 +37,59 @@ u_int32_t dr[8] = { 0 };
 int
 main(int argc, char *argv[])
 {
-	init();
-	cpu_loop();
-	return 0;
+  init();
+  cpu_loop();
+  return 0;
 }
 
 void init()
 {
-	EAX = 0x0A;
-	EBX = 0;
-	ECX = 0;
-	EDX = 0;
-	EBP = 0;
-	ESP = 0;
-	EDI = 0;
-	ESI = 0;
+  EAX = 0x0A;
+  EBX = 0;
+  ECX = 0;
+  EDX = 0;
+  EBP = 0;
+  ESP = 0;
+  EDI = 0;
+  ESI = 0;
 
-	EIP = 0;
+  EIP = 0;
 
-	CS.selector = 0;
-	DS.selector = 0;
-	FS.selector = 0;
-	SS.selector = 0;
-	GS.selector = 0;
-	ES.selector = 0;
+  CS.selector = 0;
+  DS.selector = 0;
+  FS.selector = 0;
+  SS.selector = 0;
+  GS.selector = 0;
+  ES.selector = 0;
 
-	LDTR.selector = 0;
-	TR.selector = 0;
-	eflags = 0;
-	cr[0] = 0x60000000;
-	cr[0] |= CRO_PE_MASK;
-	DEBUG("mode:%s\n", REAL_MODE ? "real mode" : "protected mode");
-	CSDesc.d_b = 1;
-	gdtr.base = 0;
-	gdtr.limit = 0xFFFF;
-	idtr.base = 0;
-	idtr.limit = 0xFFFF;
-	print();
-	mem_init();
+  LDTR.selector = 0;
+  TR.selector = 0;
+  eflags = 0;
+  cr[0] = 0x60000000;
+  cr[0] |= CRO_PE_MASK;
+  DEBUG("mode:%s\n", REAL_MODE ? "real mode" : "protected mode");
+  CSDesc.d_b = 1;
+  gdtr.base = 0;
+  gdtr.limit = 0xFFFF;
+  idtr.base = 0;
+  idtr.limit = 0xFFFF;
+  print();
+  mem_init();
 
 }
 
 
 void print()
 {
-	DEBUG("EIP=0x%08x\n", EIP);
-	DEBUG("EAX=0x%08x\n", EAX);
-	DEBUG("EBX=0x%08x\n", EBX);
-	DEBUG("ECX=0x%08x\n", ECX);
-	DEBUG("EDX=0x%08x\n", EDX);
-	DEBUG("EBP=0x%08x\n", EBP);
-	DEBUG("ESP=0x%08x\n", ESP);
-	DEBUG("ESI=0x%08x\n", ESI);
-	DEBUG("EDI=0x%08x\n", EDI);
-	DEBUG("EFLAGS=0x%08x\n", eflags);
+  DEBUG("EIP=0x%08x\n", EIP);
+  DEBUG("EAX=0x%08x\n", EAX);
+  DEBUG("EBX=0x%08x\n", EBX);
+  DEBUG("ECX=0x%08x\n", ECX);
+  DEBUG("EDX=0x%08x\n", EDX);
+  DEBUG("EBP=0x%08x\n", EBP);
+  DEBUG("ESP=0x%08x\n", ESP);
+  DEBUG("ESI=0x%08x\n", ESI);
+  DEBUG("EDI=0x%08x\n", EDI);
+  DEBUG("EFLAGS=0x%08x\n", eflags);
 }
 
