@@ -5,7 +5,7 @@ void dec_modrm(){
 		if(rm_is_reg){
 			if(prefix_seg!=7)
 				eAddr_sreg=prefix_seg;
-			linear_addr=translate_linear_addr(eAddr16,eAddr_sreg);
+			linear_addr=translate_linear_addr(effective_address_16,eAddr_sreg);
 		}
 	}
 	else{
@@ -13,7 +13,7 @@ void dec_modrm(){
 		if(rm_is_reg){
 			if(prefix_seg!=7)
 				eAddr_sreg=prefix_seg;
-			linear_addr=translate_linear_addr(eAddr32,eAddr_sreg);
+			linear_addr=translate_linear_addr(effective_address_32,eAddr_sreg);
 		}
 	}
 }
@@ -47,44 +47,44 @@ void dec_modrm_16b(){
 		}
 		switch(rm){
 			case 0:
-				eAddr16=BX+SI+offset;
+				effective_address_16=BX+SI+offset;
 				eAddr_sreg=SEG_REG_DS; //DS
 				break;
 			case 1:
-				eAddr16=BX+DI+offset;
+				effective_address_16=BX+DI+offset;
 				eAddr_sreg=SEG_REG_DS;
 				break;
 			case 2:
-				eAddr16=BP+SI+offset;
+				effective_address_16=BP+SI+offset;
 				eAddr_sreg=SEG_REG_SS; //SS
 				break;
 			case 3:
-				eAddr16=BP+DI+offset;
+				effective_address_16=BP+DI+offset;
 				eAddr_sreg=SEG_REG_SS; //SS
 				break;
 			case 4:
-				eAddr16=SI+offset;
+				effective_address_16=SI+offset;
 				eAddr_sreg=SEG_REG_DS; //DS
 				break;
 			case 5:
-				eAddr16=DI+offset;
+				effective_address_16=DI+offset;
 				eAddr_sreg=SEG_REG_DS; //DS
 				break;
 			case 6:
 				switch(mod){
 					case 0:  //00 110
-		 				eAddr16=*(curInst+2);
+		 				effective_address_16=*(curInst+2);
 						eAddr_sreg=SEG_REG_DS;
 						instLen=3;
 						break;
 					default:
-						eAddr16=BP+offset;
+						effective_address_16=BP+offset;
 						eAddr_sreg=SEG_REG_SS; //SS
 						break;
 				}
 				break;
 			case 7:
-				eAddr16=BX+offset;
+				effective_address_16=BX+offset;
 				eAddr_sreg=SEG_REG_DS; //DS
 				break;
 			default:
@@ -125,40 +125,40 @@ void dec_modrm_32b(){
 		}
 		switch(rm){
 			case 0:
-				eAddr32=EAX+offset;
+				effective_address_32=EAX+offset;
 				eAddr_sreg=SEG_REG_DS; //DS
 				break;
 			case 1:
-				eAddr32=EBX+offset;
+				effective_address_32=EBX+offset;
 				eAddr_sreg=SEG_REG_DS;
 				break;
 			case 2:
-				eAddr32=EDX+offset;
+				effective_address_32=EDX+offset;
 				eAddr_sreg=SEG_REG_DS;
 				break;
 			case 3:
-				eAddr32=EBX+offset;
+				effective_address_32=EBX+offset;
 				eAddr_sreg=SEG_REG_DS;
 				break;
 			case 5:
 				switch(mod){
 					case 0:   //
-		 				eAddr32=*(u_int32_t*)(curInst+2);
+		 				effective_address_32=*(u_int32_t*)(curInst+2);
 						instLen=5;
 						eAddr_sreg=SEG_REG_DS;
 						break;
 					default:  //mod =00 ,no displacement
-						eAddr32=EBP+offset;
+						effective_address_32=EBP+offset;
 						eAddr_sreg=SEG_REG_SS; //SS
 						break;
 				}
 				break;
 			case 6:
-				eAddr32=ESI+offset;
+				effective_address_32=ESI+offset;
 				eAddr_sreg=SEG_REG_DS;
 				break;
 			case 7:
-				eAddr32=EDI+offset;
+				effective_address_32=EDI+offset;
 				eAddr_sreg=SEG_REG_DS; //DS
 				break;
 			default:
@@ -215,10 +215,10 @@ void dec_sib(){
 	if(mod==0&&base==5){
 		offset=*(u_int32_t*)(curInst+3);
 		instLen=6;
-		eAddr32=offset+index_reg*scale;
+		effective_address_32=offset+index_reg*scale;
 	}
 	else{
-		eAddr32=read32BitReg(base)+index_reg*scale+offset;
+		effective_address_32=read32BitReg(base)+index_reg*scale+offset;
 	}
 	if((mod==0&&base==5)||(base!=5&&base!=6)){
 		eAddr_sreg=SEG_REG_DS;
@@ -226,6 +226,6 @@ void dec_sib(){
 	else{
 		eAddr_sreg=SEG_REG_SS;
 	}
-	//DEBUG("sib:%02x,mod:%d,ss:%d(%d),index:%08x(%d),base:%08x(%d),addr:%08x(%d)\n",sib,mod,scale,ss,index_reg,index,read32BitReg(base),base,eAddr32,offset);
+	//DEBUG("sib:%02x,mod:%d,ss:%d(%d),index:%08x(%d),base:%08x(%d),addr:%08x(%d)\n",sib,mod,scale,ss,index_reg,index,read32BitReg(base),base,effective_address_32,offset);
 }
 

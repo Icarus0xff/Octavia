@@ -37,4 +37,9 @@ build/cmake_install.cmake
 build/cmodel
 build/mem_rom
 *#
-
+src/cmodel.vcxproj.filters
+src/.vs/
+src/cmodel.opensdf
+src/cmodel.sdf
+src/cmodel.sln
+src/cmodel.vcxproj

@@ -277,8 +277,8 @@ extern u_int8_t immLen;
 extern u_int8_t instLen;
 extern u_int8_t reg1,reg2;
 extern u_int8_t rm_is_reg;
-extern u_int16_t eAddr16;
-extern u_int32_t eAddr32;
+extern u_int16_t effective_address_16;
+extern u_int32_t effective_address_32;
 extern u_int8_t eAddr_sreg;
 extern u_int32_t linear_addr;
 /*******************************
