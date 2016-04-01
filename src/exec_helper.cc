@@ -1081,15 +1081,15 @@ void exec_lea(){
     }
     if(operand_size()==16){
         if(address_size()==16){
-            write16BitReg(reg1,eAddr16);
+            write16BitReg(reg1,effective_address_16);
         }else{
-            write16BitReg(reg1,eAddr32);
+            write16BitReg(reg1,effective_address_32);
         }
     } else{
         if(address_size()==16){
-            write32BitReg(reg1,eAddr16);
+            write32BitReg(reg1,effective_address_16);
         }else{
-            write32BitReg(reg1,eAddr32);
+            write32BitReg(reg1,effective_address_32);
         }
     }
 }

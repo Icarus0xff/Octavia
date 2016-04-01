@@ -20,8 +20,8 @@ Reg ipreg = { 0 };
 u_int8_t instLen = 0;
 u_int8_t reg1 = 0, reg2 = 0;
 u_int8_t rm_is_reg = 0;
-u_int16_t eAddr16 = 0;
-u_int32_t eAddr32 = 0;
+u_int16_t effective_address_16 = 0;
+u_int32_t effective_address_32 = 0;
 u_int8_t eAddr_sreg = 0;
 u_int32_t linear_addr = 0;
 
