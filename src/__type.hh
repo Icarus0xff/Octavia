@@ -22,11 +22,19 @@ namespace CpuRegisterType
     class FundamentalDataTypeOperators : public Base
     {
     public:
+      FundamentalDataTypeOperators() = default;
+
+
       FundamentalDataTypeOperators(Type const & _data)
       {
 	Base::__data = _data;
       }
 
+      operator const Type () const
+      {
+	return Base::__data;
+      }
+      
       Type &
       operator=(Type const & _data)
       {
@@ -41,7 +49,6 @@ namespace CpuRegisterType
 	return Base::__data;
       }
       
-      FundamentalDataTypeOperators() {};
     };
   }
 
@@ -51,7 +58,7 @@ namespace CpuRegisterType
   public: \
     type __data; \
     typedef type __DataType; \
-    FundamentalDataTypeUnderlyingClass##name() {}; \
+    FundamentalDataTypeUnderlyingClass##name() = default; \
   }; \
   typedef FundamentalDataTypeBackend::FundamentalDataTypeOperators< \
     FundamentalDataTypeUnderlyingClass##name::__DataType, \

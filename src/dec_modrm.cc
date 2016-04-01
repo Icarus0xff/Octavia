@@ -1,4 +1,5 @@
 #include "global.h"
+
 void dec_modrm()
 {
 	if (address_size() == 16)

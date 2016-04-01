@@ -1,6 +1,8 @@
 #include "__dec_opcode.hh"
+#include "instruction.h"
 #include <cstdio>
 
 void opcode_run(){
-  printf("%s\n", __func__);
+  X86Instruction::Instruction inst;
+  
 }

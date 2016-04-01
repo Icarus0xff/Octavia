@@ -1,5 +1,6 @@
 #include "global.h"
 #include "__dec_opcode.hh"
+#include "instruction.h"
 
 //main cpu loop
 void cpu_loop()
