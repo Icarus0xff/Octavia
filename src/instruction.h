@@ -5,16 +5,15 @@
 
 namespace X86Instruction{
 
-  
   enum
-    {
-      CSa,
-      SSa,
-      DSa,
-      ESa,
-      FSa,
-      GSa,
-    };
+  {
+    XCS,
+    XSS,
+    XDS,
+    XES,
+    XFS,
+    XGS,
+  };
   
   class InstructionPrefix
   {
@@ -28,20 +27,58 @@ namespace X86Instruction{
     //group 2
     CpuRegisterType::u8 seg;
     //group 3
-    CpuRegisterType::u8 op;
+    bool op;
     //group 4
-    CpuRegisterType::u8 addr;
+    bool addr;
 
     InstructionPrefix() = default;
     
-    InstructionPrefix(const CpuRegisterType::Byte * byte)
+    InstructionPrefix(const CpuRegisterType::Byte * curbyte)
     {
-      const CpuRegisterType::Byte * index = byte;
       for (int i = 0; i < 3; ++i)
 	{
-	  group[i] = * index;
-	  index++;
+	  group[i] = * curbyte;
+	  switch(*curbyte){
+	  case 0xF0: //lock
+	    lock = true;
+	    break;
+	  case 0xF2: //repne
+	    repne = true;
+	    break;
+	  case 0xF3: //rep
+	    rep = true;
+	    break;
+	  case 0x2E: //CS
+	    seg = XCS;
+	    break;
+	  case 0x36: //SS
+	    seg = XSS;
+	    break;
+	  case 0x3E: //DS
+	    seg = XDS;
+	    break;
+	  case 0x26: //ES
+	    seg = XES;
+	    break;
+	  case 0x64: //FS
+	    seg = XFS;
+	    break;
+	  case 0x65: //GS
+	    seg = XGS;
+	    break;
+	  case 0x66: //op-size
+	    op = true;
+	    break;
+	  case 0x67: // addr
+	    addr = true;
+	    break;
+	  default:
+	    goto out;
+	  }
+	  curbyte++;
 	}
+    out:
+      return;
     }
   };
   
@@ -70,4 +107,3 @@ namespace X86Instruction{
   };
 }
 #endif /* CPUEMULATOR_INSTRUCTION_H_ */
-
