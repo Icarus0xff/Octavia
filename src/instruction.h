@@ -4,21 +4,8 @@
 #include <iostream>
 #include "__type.hh"
 
-namespace X86Instruction
-{
+namespace X86Instruction{
 
-<<<<<<< HEAD
-
-	enum
-	{
-		CSa,
-		SSa,
-		DSa,
-		ESa,
-		FSa,
-		GSa,
-	};
-=======
   enum
   {
     XCS,
@@ -103,62 +90,14 @@ namespace X86Instruction
     }
   };
   
->>>>>>> inst
 
-	class InstructionPrefix
-	{
-	public:
-		CpuRegisterType::Byte group[4] = { 0,0,0,0 };
+  class ModrmSib
+  {
+  public:
+    CpuRegisterType::Byte modrm;
+    CpuRegisterType::Byte sib;
+  };
 
-		//group1
-		bool lock;
-		bool rep;
-		bool repne;
-		//group 2
-		CpuRegisterType::u8 seg;
-		//group 3
-		CpuRegisterType::u8 op;
-		//group 4
-		CpuRegisterType::u8 addr;
-
-		InstructionPrefix() = default;
-
-		InstructionPrefix(const CpuRegisterType::Byte * byte)
-		{
-			const CpuRegisterType::Byte * index = byte;
-			for (int i = 0; i < 3; ++i)
-			{
-				group[i] = *index;
-				index++;
-			}
-		}
-	};
-
-
-	class ModrmSib
-	{
-	public:
-		CpuRegisterType::Byte modrm;
-		CpuRegisterType::Byte sib;
-	};
-
-	class Instruction
-	{
-	private:
-		CpuRegisterType::Byte * curinst;
-		InstructionPrefix prefix;
-		ModrmSib modrm_sib;
-	public:
-		Instruction() = default;
-		Instruction(CpuRegisterType::Byte * cur) : curinst(0), prefix(), modrm_sib()
-		{
-			curinst = cur;
-			prefix = InstructionPrefix(curinst);
-		}
-
-<<<<<<< HEAD
-	};
-=======
   class Instruction
   {
   private:
@@ -194,6 +133,5 @@ namespace X86Instruction
     }
     
   };
->>>>>>> inst
 }
 #endif /* CPUEMULATOR_INSTRUCTION_H_ */
