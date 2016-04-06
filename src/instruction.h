@@ -7,14 +7,14 @@
 namespace X86Instruction{
 
   enum
-  {
-    XCS,
-    XSS,
-    XDS,
-    XES,
-    XFS,
-    XGS,
-  };
+    {
+      XCS,
+      XSS,
+      XDS,
+      XES,
+      XFS,
+      XGS,
+    };
   
   class InstructionPrefix
   {
@@ -96,19 +96,41 @@ namespace X86Instruction{
   public:
     CpuRegisterType::Byte modrm;
     CpuRegisterType::Byte sib;
+    bool is_address_size16;
+    u_int16_t effective_address_16;
+    u_int32_t effective_address_32;
+
+    ModrmSib() = default;
+    ModrmSib(const CpuRegisterType::Byte * cur) : modrm(0), sib(0), is_address_size16(0)
+    {
+      modrm = * cur;
+      
+      if (is_address_size16)
+	{
+	  auto mod = modrm >> 6;
+	  auto rm = (modrm >> 3) & 0x7;
+	  auto reg = modrm & 0x7;
+	}
+      else
+	{
+	}
+    }
+
+    
+    
   };
 
   class Instruction
   {
   private:
-    CpuRegisterType::Byte * curinst;
+    const CpuRegisterType::Byte * curinst;
     InstructionPrefix prefix;
     CpuRegisterType::Byte opcode[3];
     ModrmSib modrm_sib;
   public:
     
     Instruction() = default;
-    Instruction(CpuRegisterType::Byte * cur) : curinst(0),  prefix(), modrm_sib(), opcode{0}
+    Instruction(const CpuRegisterType::Byte * cur) : curinst(0),  prefix(), modrm_sib(), opcode{0}
     {
       curinst = cur;
       prefix = InstructionPrefix(curinst);
@@ -123,7 +145,9 @@ namespace X86Instruction{
 	opcode[2] = 0;
       }
     }
-
+    
+    
+    
     void print_status()
     {
       prefix.print_status();
