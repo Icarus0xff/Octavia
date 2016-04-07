@@ -15,6 +15,18 @@ namespace X86Instruction{
       XFS,
       XGS,
     };
+
+  enum
+    {
+      EAX_MM0,
+      ECX_MM1,
+      EDX_MM2,
+      EBX_MM3,
+      ESP_MM4,
+      EBP_MM5,
+      ESI_MM6,
+      EDI_MM7,
+    };
   
   class InstructionPrefix
   {
@@ -103,13 +115,32 @@ namespace X86Instruction{
     ModrmSib() = default;
     ModrmSib(const CpuRegisterType::Byte * cur) : modrm(0), sib(0), is_address_size16(0)
     {
-      modrm = * cur;
+      modrm = * cur++;
       
       if (is_address_size16)
 	{
 	  auto mod = modrm >> 6;
 	  auto rm = (modrm >> 3) & 0x7;
 	  auto reg = modrm & 0x7;
+	  auto disp = 0;
+	  auto is_rm_a_reg = false;
+	  switch(mod)
+	    {
+	    case 0:
+	      disp = 0;
+	      break;
+	    case 1:
+	      disp = (int8_t)(*cur);
+	      cur++;
+	      break;
+	    case 2:
+	      disp = (u_int16_t)(*cur);
+	      cur++;
+	      break;
+	    case 3:
+	      is_rm_a_reg = true;
+	      break;
+	    }
 	}
       else
 	{
