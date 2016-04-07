@@ -1,9 +1,14 @@
 #include "global.h"
 #include "__type.hh"
 
+using CpuRegisterType::Register;
+
 /*
   Initialize glabal variables.
 */
+
+
+
 u_int8_t *memBase = 0;
 u_int8_t *memBase_rtl = 0;
 Sreg sreg[6] = { 0 };

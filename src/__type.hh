@@ -75,7 +75,10 @@ namespace CpuRegisterType
   class Register
   {
   public:
-    Register() {};
+    Register() 
+    {
+      erx = 0;
+    }
     union
     {
       Dword erx;

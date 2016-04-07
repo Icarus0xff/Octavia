@@ -2,11 +2,12 @@
 #include "global.h"
 #include "__dec_opcode.hh"
 #include "instruction.h"
+using namespace CpuRegisterType;
 
 //main cpu loop
 void cpu_loop()
 {
-  int i = 2;
+  int i = 1;
   
   while (i--)
     {

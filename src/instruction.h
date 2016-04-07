@@ -116,7 +116,8 @@ namespace X86Instruction
     u_int32_t effective_address_32;
     u_int8_t effective_addr_seg_reg;
     ModrmSib() = default;
-    ModrmSib(const CpuRegisterType::Byte * cur) : modrm(0), sib(0), is_address_size16(0)
+
+    ModrmSib(const CpuRegisterType::Byte * cur) : modrm(0), sib(0), is_address_size16(true), effective_address_16(0), effective_addr_seg_reg(6)
     {
       modrm = *cur++;
 
@@ -194,7 +195,8 @@ namespace X86Instruction
     
     void print_status()
     {
-      printf("%x\n", (u8)modrm);
+      printf("modrm: %x\n", (u8)modrm);
+      printf("effective_address: %x\n", effective_address_16);
     }
 
 
@@ -226,6 +228,8 @@ namespace X86Instruction
 	  opcode[1] = *curinst;
 	  opcode[2] = 0;
 	}
+      curinst++;
+      cur = curinst;
     }
 
     void set_modrm_sib(){

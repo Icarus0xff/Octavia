@@ -18,15 +18,11 @@ void mem_init(){
   while((rc=fread(buf,sizeof(unsigned char),512,memFile))!=0){
     int i=0;
     while(i<1024){
-      printf("i = %d buf[i] = %x\n", i, buf[i]);
       if(start==0){
-	//find ud2(0f 0b) instruciton
-	if(buf[i]==0xf && buf[i+1]==0xb){
-	  printf("jesus fucking christ!\n");
-	  printf("i = %d buf[i] = %x, buf[i+1] = %x\n", i, buf[i], buf[i+1]);
+	//find ud2(0f 0b) instruciton as start
+	if(buf[i]==0x0f && buf[i+1]==0x0b){
 	  i+=2;
 	  start=1;
-	  
 	}
 	else{
 	  i++;
@@ -34,7 +30,8 @@ void mem_init(){
 	}
       }
       memBase[cur++]=buf[i];
-      if(buf[i]==201){
+      //find leave(c90) instruciton as end
+      if(buf[i]==0xc9){
 	end=1;
 	break;
       }
