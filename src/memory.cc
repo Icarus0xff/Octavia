@@ -19,7 +19,8 @@ void mem_init(){
     int i=0;
     while(i<1024){
       if(start==0){
-	if(buf[i]==15&&buf[i+1]==11){
+	//find ud2(0f 0b) instruciton
+	if(buf[i]==0x0f && buf[i+1]==0x0b){
 	  i+=2;
 	  start=1;
 	}
