@@ -6,14 +6,16 @@
 //main cpu loop
 void cpu_loop()
 {
-  int i = 5;
+  int i = 2;
   
   while (i--)
     {
       fetch();
       CpuRegisterType::Byte * b_curinst = (CpuRegisterType::Byte *)curInst;
       X86Instruction::Instruction inst = X86Instruction::Instruction(b_curinst);
+      inst.set_modrm_sib();
       inst.print_status();
+      //inst.modrm_sib = X86Instruction::ModrmSib(b_curinst);
       // dec_prefix();
       // DEBUG("opcode:%02x , prefixLen:%d\n", *curInst, prefixLen);
       // if (prefix_2byte)
@@ -26,17 +28,6 @@ void cpu_loop()
     }
 }
 
-void cpu_exec_once()
-{
-  fetch();
-  dec_prefix();
-  DEBUG("opcode:%02x , prefixLen:%d\n", *curInst, prefixLen);
-  if (prefix_2byte)
-    dec_opcode_2byte_run();
-  else
-    dec_opcode_run();
-  print();
-}
 void fetch()
 {
   linear_addr = translate_linear_addr(EIP, SEG_REG_CS);

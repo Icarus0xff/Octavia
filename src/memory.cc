@@ -18,10 +18,15 @@ void mem_init(){
   while((rc=fread(buf,sizeof(unsigned char),512,memFile))!=0){
     int i=0;
     while(i<1024){
+      printf("i = %d buf[i] = %x\n", i, buf[i]);
       if(start==0){
-	if(buf[i]==15&&buf[i+1]==11){
+	//find ud2(0f 0b) instruciton
+	if(buf[i]==0xf && buf[i+1]==0xb){
+	  printf("jesus fucking christ!\n");
+	  printf("i = %d buf[i] = %x, buf[i+1] = %x\n", i, buf[i], buf[i+1]);
 	  i+=2;
 	  start=1;
+	  
 	}
 	else{
 	  i++;
@@ -40,51 +45,6 @@ void mem_init(){
   DEBUG("cur=%d,%d\n",cur,memBase[cur-1]);
 }
 
-void rtl_mem_init(){
-  memBase_rtl=(u_int8_t*)malloc(MEMSIZE);
-  int cur=0;
-  FILE *memFile;
-  unsigned char buf[512];
-  memFile=fopen("mem_rom","rb");
-  if(memFile==NULL){
-    printf("mem initial file not exist\n");
-    exit(1);
-  }
-  memset(buf,'\0',512);
-  int rc;
-  int start=0,end=0;
-  while((rc=fread(buf,sizeof(unsigned char),512,memFile))!=0){
-    int i=0;
-    while(i<1024){
-      if(start==0){
-	if(buf[i]==15&&buf[i+1]==11){
-	  i+=2;
-	  start=1;
-	}
-	else{
-	  i++;
-	  continue;
-	}
-      }
-      memBase_rtl[cur++]=buf[i];
-      if(buf[i]==201){
-	end=1;
-	break;
-      }
-      i++;
-    }
-    if(end>0) break;
-  }
-	
-  int counter = 0;
-
-  while (counter <= 10)
-    {
-      printf("mem[%d] = %x\n",counter, memBase_rtl[counter]);
-      counter = counter + 1;
-    }
-  DEBUG("cur=%d,%d\n",cur,memBase_rtl[cur-1]);
-}
 
 u_int32_t translate_linear_addr(u_int32_t offset,u_int8_t sreg){
   printf("offset: %08x\n", offset);

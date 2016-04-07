@@ -88,5 +88,16 @@ namespace CpuRegisterType
       Word idle;
     };
   };
+  
+  static Register XEAX;
+  static Register XECX;
+  static Register XEDX;
+  static Register XEBX;
+  static Register XESP;
+  static Register XEBP;
+  static Register XESI;
+  static Register XEDI;
 }
+
+
 #endif
