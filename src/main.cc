@@ -6,7 +6,14 @@ using CpuRegisterType::Register;
 /*
   Initialize glabal variables.
 */
-
+Register XEAX = Register();
+Register XECX = Register();
+Register XEDX = Register();
+Register XEBX = Register();
+Register XESP = Register();
+Register XEBP = Register();
+Register XESI = Register();
+Register XEDI = Register();
 
 
 u_int8_t *memBase = 0;

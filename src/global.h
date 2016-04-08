@@ -1,7 +1,19 @@
 #ifndef GLOBAL_HEADER
 #define GLOBAL_HEADER
 #include "type.h"
+#include "__type.hh"
 #include <cstdlib>
+
+using CpuRegisterType::Register;
+
+extern Register XEAX;
+extern Register XECX;
+extern Register XEDX;
+extern Register XEBX;
+extern Register XESP;
+extern Register XEBP;
+extern Register XESI;
+extern Register XEDI;
 /********************************
 	general register
 *********************************/
