@@ -75,6 +75,44 @@ namespace CpuRegisterType
 	return Base::__data;
       }
       
+      Type &
+      operator --()
+      {
+	--(Base::__data);
+      }
+      
+      Type &
+      operator -- (int)
+      {
+	(Base::__data)--;
+      }
+      
+      Type &
+      operator ++()
+      {
+	++(Base::__data);
+      }
+      
+      Type &
+      operator ++ (int)
+      {
+	(Base::__data)++;
+      }
+      
+      Type &
+      operator += (FundamentalDataTypeOperators const & other)
+      {
+	Base::__data += other;
+	return Base::__data;
+      }
+
+      Type &
+      operator -= (FundamentalDataTypeOperators const & other)
+      {
+	Base::__data -= other;
+	return Base::__data;
+      }
+      
     };
   }
 
@@ -101,10 +139,6 @@ namespace CpuRegisterType
   class Register
   {
   public:
-    Register() 
-    {
-      erx = 0;
-    }
     union
     {
       Dword erx;
@@ -116,6 +150,13 @@ namespace CpuRegisterType
       };
       Word idle;
     };
+
+    Register() 
+    {
+      erx = 0;
+    }
+    
+    
   };
   
   

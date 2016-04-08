@@ -15,6 +15,7 @@ Register XEBP = Register();
 Register XESI = Register();
 Register XEDI = Register();
 
+Register GeneralReg::general_reg[8] = {};
 
 u_int8_t *memBase = 0;
 u_int8_t *memBase_rtl = 0;

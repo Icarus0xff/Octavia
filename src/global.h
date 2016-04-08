@@ -5,6 +5,7 @@
 #include <cstdlib>
 
 using CpuRegisterType::Register;
+using namespace Enum;
 
 extern Register XEAX;
 extern Register XECX;
@@ -15,43 +16,46 @@ extern Register XEBP;
 extern Register XESI;
 extern Register XEDI;
 
-
-extern Register general_reg[8];
+namespace GeneralReg
+{
+  extern Register general_reg[8];
+}
 /********************************
 	general register
 *********************************/
 extern Reg greg[8];
 //8-bit general reg
-#define AL (XEAX.rl)
-#define CL (greg[1].word.byte.rl)
-#define DL (greg[2].word.byte.rl)
-#define BL (greg[3].word.byte.rl)
-#define AH (greg[0].word.byte.rh)
-#define CH (greg[1].word.byte.rh)
-#define DH (greg[2].word.byte.rh)
-#define BH (greg[3].word.byte.rh)
+using GeneralReg::general_reg;
+#define AL (general_reg[enum_EAX].rl)
+#define CL (general_reg[enum_ECX].rl)
+#define DL (general_reg[enum_EDX].rl)
+#define BL (general_reg[enum_EBX].rl)
+#define AH (general_reg[enum_EAX].rh)
+#define CH (general_reg[enum_ECX].rh)
+#define DH (general_reg[enum_EDX].rh)
+#define BH (general_reg[enum_EBX].rh)
 u_int8_t read8BitReg(u_int8_t index);
 void write8BitReg(u_int8_t index,u_int8_t data);
 //16-bit general reg
-#define AX (greg[0].word.rx)
-#define CX (greg[1].word.rx)
-#define DX (greg[2].word.rx)
-#define BX (greg[3].word.rx)
-#define SP (greg[4].word.rx)
-#define BP (greg[5].word.rx)
-#define SI (greg[6].word.rx)
-#define DI (greg[7].word.rx)
+#define AX (general_reg[enum_EAX].rx)
+#define CX (general_reg[enum_ECX].rx)
+#define DX (general_reg[enum_EDX].rx)
+#define BX (general_reg[enum_EBX].rx)
+#define SP (general_reg[enum_ESP].rx)
+#define BP (general_reg[enum_EBP].rx)
+#define SI (general_reg[enum_ESI].rx)
+#define DI (general_reg[enum_EDI].rx)
 u_int16_t read16BitReg(u_int8_t index);
 void write16BitReg(u_int8_t index,u_int16_t data);
 //32-bit general reg
-#define EAX (greg[0].dword.erx)
-#define ECX (greg[1].dword.erx)
-#define EDX (greg[2].dword.erx)
-#define EBX (greg[3].dword.erx)
-#define ESP (greg[4].dword.erx)
-#define EBP (greg[5].dword.erx)
-#define ESI (greg[6].dword.erx)
-#define EDI (greg[7].dword.erx)
+#define EAX (general_reg[enum_EAX].erx)
+#define ECX (general_reg[enum_ECX].erx)
+#define EDX (general_reg[enum_EDX].erx)
+#define EBX (general_reg[enum_EBX].erx)
+#define ESP (general_reg[enum_ESP].erx)
+#define EBP (general_reg[enum_EBP].erx)
+#define ESI (general_reg[enum_ESI].erx)
+#define EDI (general_reg[enum_EDI].erx)
 u_int32_t read32BitReg(u_int8_t index);
 void write32BitReg(u_int8_t index,u_int32_t data);
 // instruction pointer
