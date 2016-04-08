@@ -5,31 +5,12 @@
 #include "__type.hh"
 
 using namespace CpuRegisterType;
+using namespace Enum;
 
 namespace X86Instruction
 {
 
-  enum
-    {
-      XCS = 0,
-      XSS,
-      XDS,
-      XES,
-      XFS,
-      XGS,
-    };
-
-  enum
-    {
-      EAX_MM0,
-      ECX_MM1,
-      EDX_MM2,
-      EBX_MM3,
-      ESP_MM4,
-      EBP_MM5,
-      ESI_MM6,
-      EDI_MM7,
-    };
+  
 
   class InstructionPrefix
   {
@@ -65,22 +46,22 @@ namespace X86Instruction
 	      rep = true;
 	      break;
 	    case 0x2E: //CS
-	      seg = XCS;
+	      seg = ecs;
 	      break;
 	    case 0x36: //SS
-	      seg = XSS;
+	      seg = ess;
 	      break;
 	    case 0x3E: //DS
-	      seg = XDS;
+	      seg = eds;
 	      break;
 	    case 0x26: //ES
-	      seg = XES;
+	      seg = ees;
 	      break;
 	    case 0x64: //FS
-	      seg = XFS;
+	      seg = efs;
 	      break;
 	    case 0x65: //GS
-	      seg = XGS;
+	      seg = egs;
 	      break;
 	    case 0x66: //op-size
 	      op = true;
@@ -151,38 +132,38 @@ namespace X86Instruction
 	    {
 	    case 0:
 	      effective_address_16 = XEBX.rx + XESI.rx + disp;
-	      effective_addr_seg_reg = XDS;
+	      effective_addr_seg_reg = eds;
 	      break;
 	    case 1:
 	      effective_address_16 = XEBX.rx + XEDI.rx + disp;
-	      effective_addr_seg_reg = XDS;
+	      effective_addr_seg_reg = eds;
 	    case 2:
 	      effective_address_16 = XEBP.rx + XESI.rx + disp;
-	      effective_addr_seg_reg = XSS;
+	      effective_addr_seg_reg = eds;
 	    case 3:
 	      effective_address_16 = XEBP.rx + XEDI.rx + disp;
-	      effective_addr_seg_reg = XSS;
+	      effective_addr_seg_reg = eds;
 	    case 4:
 	      effective_address_16 = XESI.rx + disp;
-	      effective_addr_seg_reg = XDS;
+	      effective_addr_seg_reg = eds;
 	    case 5:
 	      effective_address_16 = XEDI.rx + disp;
-	      effective_addr_seg_reg = XDS;
+	      effective_addr_seg_reg = eds;
 	    case 6:
 	      switch(mod)
 		{
 		case 0:
 		  effective_address_16 = * cur;
 		  cur++;
-		  effective_addr_seg_reg = XDS;
+		  effective_addr_seg_reg = eds;
 		default:
 		  effective_address_16 = XEBP.rx + disp;
-		  effective_addr_seg_reg = XSS;
+		  effective_addr_seg_reg = ess;
 		}
 	      break;
 	    case 7:
 	      effective_address_16 = XEBX.rx + disp;
-	      effective_addr_seg_reg = XSS;
+	      effective_addr_seg_reg = ess;
 	    default:
 	      break;
 	    }

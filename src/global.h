@@ -14,12 +14,15 @@ extern Register XESP;
 extern Register XEBP;
 extern Register XESI;
 extern Register XEDI;
+
+
+extern Register general_reg[8];
 /********************************
 	general register
 *********************************/
 extern Reg greg[8];
 //8-bit general reg
-#define AL (greg[0].word.byte.rl)
+#define AL (XEAX.rl)
 #define CL (greg[1].word.byte.rl)
 #define DL (greg[2].word.byte.rl)
 #define BL (greg[3].word.byte.rl)

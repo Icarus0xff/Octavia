@@ -8,6 +8,32 @@
 #include <cstdio>
 #include <cstdlib>
 
+namespace Enum
+{
+  enum
+    {
+      ecs = 0,
+      ess,
+      eds,
+      ees,
+      efs,
+      egs,
+    };
+
+  enum
+    {
+      EAX_MM0 = 0,
+      ECX_MM1,
+      EDX_MM2,
+      EBX_MM3,
+      ESP_MM4,
+      EBP_MM5,
+      ESI_MM6,
+      EDI_MM7,
+    };
+}
+
+
 namespace CpuRegisterType
 {
   typedef u_int32_t u32;
