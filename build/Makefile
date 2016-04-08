@@ -303,6 +303,30 @@ home/augustus/Source/cpu_emulator/src/flags.cc.s:
 	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/flags.cc.s
 .PHONY : home/augustus/Source/cpu_emulator/src/flags.cc.s
 
+home/augustus/Source/cpu_emulator/src/instruction.o: home/augustus/Source/cpu_emulator/src/instruction.cc.o
+.PHONY : home/augustus/Source/cpu_emulator/src/instruction.o
+
+# target to build an object file
+home/augustus/Source/cpu_emulator/src/instruction.cc.o:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/instruction.cc.o
+.PHONY : home/augustus/Source/cpu_emulator/src/instruction.cc.o
+
+home/augustus/Source/cpu_emulator/src/instruction.i: home/augustus/Source/cpu_emulator/src/instruction.cc.i
+.PHONY : home/augustus/Source/cpu_emulator/src/instruction.i
+
+# target to preprocess a source file
+home/augustus/Source/cpu_emulator/src/instruction.cc.i:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/instruction.cc.i
+.PHONY : home/augustus/Source/cpu_emulator/src/instruction.cc.i
+
+home/augustus/Source/cpu_emulator/src/instruction.s: home/augustus/Source/cpu_emulator/src/instruction.cc.s
+.PHONY : home/augustus/Source/cpu_emulator/src/instruction.s
+
+# target to generate assembly for a file
+home/augustus/Source/cpu_emulator/src/instruction.cc.s:
+	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/cpu_emulator/src/instruction.cc.s
+.PHONY : home/augustus/Source/cpu_emulator/src/instruction.cc.s
+
 home/augustus/Source/cpu_emulator/src/main.o: home/augustus/Source/cpu_emulator/src/main.cc.o
 .PHONY : home/augustus/Source/cpu_emulator/src/main.o
 
@@ -432,6 +456,9 @@ help:
 	@echo "... home/augustus/Source/cpu_emulator/src/flags.o"
 	@echo "... home/augustus/Source/cpu_emulator/src/flags.i"
 	@echo "... home/augustus/Source/cpu_emulator/src/flags.s"
+	@echo "... home/augustus/Source/cpu_emulator/src/instruction.o"
+	@echo "... home/augustus/Source/cpu_emulator/src/instruction.i"
+	@echo "... home/augustus/Source/cpu_emulator/src/instruction.s"
 	@echo "... home/augustus/Source/cpu_emulator/src/main.o"
 	@echo "... home/augustus/Source/cpu_emulator/src/main.i"
 	@echo "... home/augustus/Source/cpu_emulator/src/main.s"

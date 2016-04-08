@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "__type.hh"
+#include "global.h"
 
 using namespace CpuRegisterType;
 using namespace Enum;
@@ -71,6 +72,7 @@ namespace X86Instruction
 	      break;
 	    case 0x0F:
 	      is_opbyte2 = true;
+	      break;
 	    default:
 	      goto out;
 	    }
@@ -131,24 +133,29 @@ namespace X86Instruction
 	  switch (rm)
 	    {
 	    case 0:
-	      effective_address_16 = XEBX.rx + XESI.rx + disp;
+	      effective_address_16 = EBX + ESI + disp;
 	      effective_addr_seg_reg = enum_DS;
 	      break;
 	    case 1:
-	      effective_address_16 = XEBX.rx + XEDI.rx + disp;
+	      effective_address_16 = EBX + EDI + disp;
 	      effective_addr_seg_reg = enum_DS;
+	      break;
 	    case 2:
-	      effective_address_16 = XEBP.rx + XESI.rx + disp;
+	      effective_address_16 = EBP + ESI + disp;
 	      effective_addr_seg_reg = enum_DS;
+	      break;
 	    case 3:
-	      effective_address_16 = XEBP.rx + XEDI.rx + disp;
+	      effective_address_16 = EBP + EDI + disp;
 	      effective_addr_seg_reg = enum_DS;
+	      break;
 	    case 4:
-	      effective_address_16 = XESI.rx + disp;
+	      effective_address_16 = ESI + disp;
 	      effective_addr_seg_reg = enum_DS;
+	      break;
 	    case 5:
-	      effective_address_16 = XEDI.rx + disp;
+	      effective_address_16 = EDI + disp;
 	      effective_addr_seg_reg = enum_DS;
+	      break;
 	    case 6:
 	      switch(mod)
 		{
@@ -156,18 +163,19 @@ namespace X86Instruction
 		  effective_address_16 = * cur;
 		  cur++;
 		  effective_addr_seg_reg = enum_DS;
+		  break;
 		default:
-		  effective_address_16 = XEBP.rx + disp;
+		  effective_address_16 = EBP + disp;
 		  effective_addr_seg_reg = enum_SS;
 		}
 	      break;
 	    case 7:
-	      effective_address_16 = XEBX.rx + disp;
+	      effective_address_16 = EBX + disp;
 	      effective_addr_seg_reg = enum_SS;
+	      break;
 	    default:
 	      break;
 	    }
-	  
 	}
       else
 	{
@@ -225,6 +233,9 @@ namespace X86Instruction
       printf("opcode[2]: %x\n", (CpuRegisterType::u8)opcode[2]);
       modrm_sib.print_status();
     }
+
+    void dec_opcode();
+    void exec_inst();
 
   };
 }

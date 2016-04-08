@@ -3,22 +3,14 @@
 #include "type.h"
 #include "__type.hh"
 #include <cstdlib>
+#include <vector>
 
 using CpuRegisterType::Register;
 using namespace Enum;
 
-extern Register XEAX;
-extern Register XECX;
-extern Register XEDX;
-extern Register XEBX;
-extern Register XESP;
-extern Register XEBP;
-extern Register XESI;
-extern Register XEDI;
-
 namespace GeneralReg
 {
-  extern Register general_reg[8];
+  extern std::vector<Register> general_reg;
 }
 /********************************
 	general register

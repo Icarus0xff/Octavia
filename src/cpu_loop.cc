@@ -14,7 +14,7 @@ void cpu_loop()
       fetch();
       CpuRegisterType::Byte * b_curinst = (CpuRegisterType::Byte *)curInst;
       X86Instruction::Instruction inst = X86Instruction::Instruction(b_curinst);
-      inst.set_modrm_sib();
+      inst.exec_inst();
       inst.print_status();
       //inst.modrm_sib = X86Instruction::ModrmSib(b_curinst);
       // dec_prefix();
