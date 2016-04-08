@@ -12,24 +12,24 @@ namespace Enum
 {
   enum
     {
-      ecs = 0,
-      ess,
-      eds,
-      ees,
-      efs,
-      egs,
+      enum_CS = 0,
+      enum_SS,
+      enum_DS,
+      enum_ES,
+      enum_FS,
+      enum_GS,
     };
 
   enum
     {
-      EAX_MM0 = 0,
-      ECX_MM1,
-      EDX_MM2,
-      EBX_MM3,
-      ESP_MM4,
-      EBP_MM5,
-      ESI_MM6,
-      EDI_MM7,
+      enum_EAX = 0,
+      enum_ECX,
+      enum_EDX,
+      enum_EBX,
+      enum_ESP,
+      enum_EBP,
+      enum_ESI,
+      enum_EDI,
     };
 }
 

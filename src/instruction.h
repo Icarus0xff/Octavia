@@ -46,22 +46,22 @@ namespace X86Instruction
 	      rep = true;
 	      break;
 	    case 0x2E: //CS
-	      seg = ecs;
+	      seg = enum_CS;
 	      break;
 	    case 0x36: //SS
-	      seg = ess;
+	      seg = enum_SS;
 	      break;
 	    case 0x3E: //DS
-	      seg = eds;
+	      seg = enum_DS;
 	      break;
 	    case 0x26: //ES
-	      seg = ees;
+	      seg = enum_ES;
 	      break;
 	    case 0x64: //FS
-	      seg = efs;
+	      seg = enum_FS;
 	      break;
 	    case 0x65: //GS
-	      seg = egs;
+	      seg = enum_GS;
 	      break;
 	    case 0x66: //op-size
 	      op = true;
@@ -132,38 +132,38 @@ namespace X86Instruction
 	    {
 	    case 0:
 	      effective_address_16 = XEBX.rx + XESI.rx + disp;
-	      effective_addr_seg_reg = eds;
+	      effective_addr_seg_reg = enum_DS;
 	      break;
 	    case 1:
 	      effective_address_16 = XEBX.rx + XEDI.rx + disp;
-	      effective_addr_seg_reg = eds;
+	      effective_addr_seg_reg = enum_DS;
 	    case 2:
 	      effective_address_16 = XEBP.rx + XESI.rx + disp;
-	      effective_addr_seg_reg = eds;
+	      effective_addr_seg_reg = enum_DS;
 	    case 3:
 	      effective_address_16 = XEBP.rx + XEDI.rx + disp;
-	      effective_addr_seg_reg = eds;
+	      effective_addr_seg_reg = enum_DS;
 	    case 4:
 	      effective_address_16 = XESI.rx + disp;
-	      effective_addr_seg_reg = eds;
+	      effective_addr_seg_reg = enum_DS;
 	    case 5:
 	      effective_address_16 = XEDI.rx + disp;
-	      effective_addr_seg_reg = eds;
+	      effective_addr_seg_reg = enum_DS;
 	    case 6:
 	      switch(mod)
 		{
 		case 0:
 		  effective_address_16 = * cur;
 		  cur++;
-		  effective_addr_seg_reg = eds;
+		  effective_addr_seg_reg = enum_DS;
 		default:
 		  effective_address_16 = XEBP.rx + disp;
-		  effective_addr_seg_reg = ess;
+		  effective_addr_seg_reg = enum_SS;
 		}
 	      break;
 	    case 7:
 	      effective_address_16 = XEBX.rx + disp;
-	      effective_addr_seg_reg = ess;
+	      effective_addr_seg_reg = enum_SS;
 	    default:
 	      break;
 	    }
