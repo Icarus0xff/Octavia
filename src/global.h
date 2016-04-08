@@ -59,9 +59,9 @@ void write16BitReg(u_int8_t index,u_int16_t data);
 u_int32_t read32BitReg(u_int8_t index);
 void write32BitReg(u_int8_t index,u_int32_t data);
 // instruction pointer
-extern Reg ipreg;
-#define EIP (ipreg.dword.erx)
-#define IP (ipreg.word.rx)
+extern Register ip_reg;
+#define EIP (ip_reg.erx)
+#define IP (ip_reg.rx)
 
 /**********************************
 	segment reg

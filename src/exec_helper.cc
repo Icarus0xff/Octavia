@@ -1488,7 +1488,7 @@ void exec_ret_near()
     if(operand_size()==16)
     {
         IP=pop_16b();
-        EIP&=0x0000FFFF;
+        //EIP&=0x0000FFFF;
     }
     else{
         EIP=pop_32b();
