@@ -1488,7 +1488,7 @@ void exec_ret_near()
     if(operand_size()==16)
     {
         IP=pop_16b();
-        EIP&=0x0000FFFF;
+        //EIP&=0x0000FFFF;
     }
     else{
         EIP=pop_32b();
@@ -2096,11 +2096,11 @@ void exec_scas_16b()
        // linear_addr=translate_linear_addr(DI,SEG_REG_ES);
         if(get_flag(DF)==0)
         {
-            DI+=2;
+            DI=DI + 2;
         }
         else
         {
-            DI-=2;
+            DI=DI - 2;
         }
     }
     else

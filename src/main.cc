@@ -1,9 +1,13 @@
 #include "global.h"
 #include "__type.hh"
 
+using CpuRegisterType::Register;
+
 /*
   Initialize glabal variables.
 */
+std::vector<Register> GeneralReg::general_reg{8};
+
 u_int8_t *memBase = 0;
 u_int8_t *memBase_rtl = 0;
 Sreg sreg[6] = { 0 };
@@ -15,7 +19,8 @@ u_int8_t prefix_rep = 0;	//repeat
 u_int8_t prefix_2byte = 0;   //2byte opcode
 u_int8_t prefix_operand = 0; //operand size
 u_int8_t prefix_address = 0;  //address size
-Reg ipreg = { 0 };
+
+Register ip_reg = Register();
 
 u_int8_t instLen = 0;
 u_int8_t reg1 = 0, reg2 = 0;

@@ -8,6 +8,32 @@
 #include <cstdio>
 #include <cstdlib>
 
+namespace Enum
+{
+  enum
+    {
+      enum_CS = 0,
+      enum_SS,
+      enum_DS,
+      enum_ES,
+      enum_FS,
+      enum_GS,
+    };
+
+  enum
+    {
+      enum_EAX = 0,
+      enum_ECX,
+      enum_EDX,
+      enum_EBX,
+      enum_ESP,
+      enum_EBP,
+      enum_ESI,
+      enum_EDI,
+    };
+}
+
+
 namespace CpuRegisterType
 {
   typedef u_int32_t u32;
@@ -22,11 +48,19 @@ namespace CpuRegisterType
     class FundamentalDataTypeOperators : public Base
     {
     public:
+      FundamentalDataTypeOperators() = default;
+
+
       FundamentalDataTypeOperators(Type const & _data)
       {
 	Base::__data = _data;
       }
 
+      operator const Type () const
+      {
+	return Base::__data;
+      }
+      
       Type &
       operator=(Type const & _data)
       {
@@ -41,7 +75,44 @@ namespace CpuRegisterType
 	return Base::__data;
       }
       
-      FundamentalDataTypeOperators() {};
+      Type &
+      operator --()
+      {
+	--(Base::__data);
+      }
+      
+      Type &
+      operator -- (int)
+      {
+	(Base::__data)--;
+      }
+      
+      Type &
+      operator ++()
+      {
+	++(Base::__data);
+      }
+      
+      Type &
+      operator ++ (int)
+      {
+	(Base::__data)++;
+      }
+      
+      Type &
+      operator += (FundamentalDataTypeOperators const & other)
+      {
+	Base::__data += other;
+	return Base::__data;
+      }
+
+      Type &
+      operator -= (FundamentalDataTypeOperators const & other)
+      {
+	Base::__data -= other;
+	return Base::__data;
+      }
+      
     };
   }
 
@@ -51,7 +122,7 @@ namespace CpuRegisterType
   public: \
     type __data; \
     typedef type __DataType; \
-    FundamentalDataTypeUnderlyingClass##name() {}; \
+    FundamentalDataTypeUnderlyingClass##name() = default; \
   }; \
   typedef FundamentalDataTypeBackend::FundamentalDataTypeOperators< \
     FundamentalDataTypeUnderlyingClass##name::__DataType, \
@@ -68,7 +139,6 @@ namespace CpuRegisterType
   class Register
   {
   public:
-    Register() {};
     union
     {
       Dword erx;
@@ -80,6 +150,17 @@ namespace CpuRegisterType
       };
       Word idle;
     };
+
+    Register() 
+    {
+      erx = 0;
+    }
+    
+    
   };
+  
+  
 }
+
+
 #endif
