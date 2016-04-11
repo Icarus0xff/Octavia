@@ -10,9 +10,6 @@ using namespace Enum;
 
 namespace X86Instruction
 {
-
-  
-
   class InstructionPrefix
   {
   public:
@@ -84,7 +81,7 @@ namespace X86Instruction
 
     void print_status()
     {
-      printf("print prifix: %d, %d, %d, %d, %d, %d, %d\n", lock, rep, repne, seg, op, addr, is_opbyte2);
+      printf("print prifix: lock: %d, rep: %d, repne: %d, seg: %d, op: %d, addr: %d, is_opbyte2: %d\n", lock, rep, repne, seg, op, addr, is_opbyte2);
     }
   };
 
@@ -102,7 +99,8 @@ namespace X86Instruction
 
     ModrmSib(const CpuRegisterType::Byte * cur) : modrm(0), sib(0), is_address_size16(true), effective_address_16(0), effective_addr_seg_reg(6)
     {
-      modrm = *cur++;
+      modrm = *cur;
+      cur++;
 
       if (is_address_size16)
 	{
@@ -236,6 +234,8 @@ namespace X86Instruction
 
     void dec_opcode();
     void exec_inst();
+
+    void exec_lea();
 
   };
 }

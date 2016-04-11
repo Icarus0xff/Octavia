@@ -30,7 +30,7 @@ void mem_init(){
 	}
       }
       memBase[cur++]=buf[i];
-      //find leave(c90) instruciton as end
+      //find leave(0xc9) instruciton as end
       if(buf[i]==0xc9){
 	end=1;
 	break;
