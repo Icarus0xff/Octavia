@@ -207,30 +207,6 @@ home/augustus/Source/Octavia/src/dec_modrm.cc.s:
 	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/Octavia/src/dec_modrm.cc.s
 .PHONY : home/augustus/Source/Octavia/src/dec_modrm.cc.s
 
-home/augustus/Source/Octavia/src/dec_opcode.o: home/augustus/Source/Octavia/src/dec_opcode.cc.o
-.PHONY : home/augustus/Source/Octavia/src/dec_opcode.o
-
-# target to build an object file
-home/augustus/Source/Octavia/src/dec_opcode.cc.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/Octavia/src/dec_opcode.cc.o
-.PHONY : home/augustus/Source/Octavia/src/dec_opcode.cc.o
-
-home/augustus/Source/Octavia/src/dec_opcode.i: home/augustus/Source/Octavia/src/dec_opcode.cc.i
-.PHONY : home/augustus/Source/Octavia/src/dec_opcode.i
-
-# target to preprocess a source file
-home/augustus/Source/Octavia/src/dec_opcode.cc.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/Octavia/src/dec_opcode.cc.i
-.PHONY : home/augustus/Source/Octavia/src/dec_opcode.cc.i
-
-home/augustus/Source/Octavia/src/dec_opcode.s: home/augustus/Source/Octavia/src/dec_opcode.cc.s
-.PHONY : home/augustus/Source/Octavia/src/dec_opcode.s
-
-# target to generate assembly for a file
-home/augustus/Source/Octavia/src/dec_opcode.cc.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/Octavia/src/dec_opcode.cc.s
-.PHONY : home/augustus/Source/Octavia/src/dec_opcode.cc.s
-
 home/augustus/Source/Octavia/src/dec_prefix.o: home/augustus/Source/Octavia/src/dec_prefix.cc.o
 .PHONY : home/augustus/Source/Octavia/src/dec_prefix.o
 
@@ -254,30 +230,6 @@ home/augustus/Source/Octavia/src/dec_prefix.s: home/augustus/Source/Octavia/src/
 home/augustus/Source/Octavia/src/dec_prefix.cc.s:
 	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/Octavia/src/dec_prefix.cc.s
 .PHONY : home/augustus/Source/Octavia/src/dec_prefix.cc.s
-
-home/augustus/Source/Octavia/src/exec_helper.o: home/augustus/Source/Octavia/src/exec_helper.cc.o
-.PHONY : home/augustus/Source/Octavia/src/exec_helper.o
-
-# target to build an object file
-home/augustus/Source/Octavia/src/exec_helper.cc.o:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/Octavia/src/exec_helper.cc.o
-.PHONY : home/augustus/Source/Octavia/src/exec_helper.cc.o
-
-home/augustus/Source/Octavia/src/exec_helper.i: home/augustus/Source/Octavia/src/exec_helper.cc.i
-.PHONY : home/augustus/Source/Octavia/src/exec_helper.i
-
-# target to preprocess a source file
-home/augustus/Source/Octavia/src/exec_helper.cc.i:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/Octavia/src/exec_helper.cc.i
-.PHONY : home/augustus/Source/Octavia/src/exec_helper.cc.i
-
-home/augustus/Source/Octavia/src/exec_helper.s: home/augustus/Source/Octavia/src/exec_helper.cc.s
-.PHONY : home/augustus/Source/Octavia/src/exec_helper.s
-
-# target to generate assembly for a file
-home/augustus/Source/Octavia/src/exec_helper.cc.s:
-	$(MAKE) -f CMakeFiles/cmodel.dir/build.make CMakeFiles/cmodel.dir/home/augustus/Source/Octavia/src/exec_helper.cc.s
-.PHONY : home/augustus/Source/Octavia/src/exec_helper.cc.s
 
 home/augustus/Source/Octavia/src/flags.o: home/augustus/Source/Octavia/src/flags.cc.o
 .PHONY : home/augustus/Source/Octavia/src/flags.o
@@ -444,15 +396,9 @@ help:
 	@echo "... home/augustus/Source/Octavia/src/dec_modrm.o"
 	@echo "... home/augustus/Source/Octavia/src/dec_modrm.i"
 	@echo "... home/augustus/Source/Octavia/src/dec_modrm.s"
-	@echo "... home/augustus/Source/Octavia/src/dec_opcode.o"
-	@echo "... home/augustus/Source/Octavia/src/dec_opcode.i"
-	@echo "... home/augustus/Source/Octavia/src/dec_opcode.s"
 	@echo "... home/augustus/Source/Octavia/src/dec_prefix.o"
 	@echo "... home/augustus/Source/Octavia/src/dec_prefix.i"
 	@echo "... home/augustus/Source/Octavia/src/dec_prefix.s"
-	@echo "... home/augustus/Source/Octavia/src/exec_helper.o"
-	@echo "... home/augustus/Source/Octavia/src/exec_helper.i"
-	@echo "... home/augustus/Source/Octavia/src/exec_helper.s"
 	@echo "... home/augustus/Source/Octavia/src/flags.o"
 	@echo "... home/augustus/Source/Octavia/src/flags.i"
 	@echo "... home/augustus/Source/Octavia/src/flags.s"

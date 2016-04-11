@@ -79,6 +79,7 @@ namespace CpuRegisterType
       operator --()
       {
 	--(Base::__data);
+	return Base::__data;
       }
       
       Type &
@@ -155,7 +156,6 @@ namespace CpuRegisterType
     {
       erx = 0;
     }
-    
     
   };
   

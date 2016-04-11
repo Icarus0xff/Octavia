@@ -16,6 +16,7 @@ void cpu_loop()
       X86Instruction::Instruction inst = X86Instruction::Instruction(b_curinst);
       inst.exec_inst();
       inst.print_status();
+      print();
       //inst.modrm_sib = X86Instruction::ModrmSib(b_curinst);
       // dec_prefix();
       // DEBUG("opcode:%02x , prefixLen:%d\n", *curInst, prefixLen);

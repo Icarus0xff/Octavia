@@ -1,4 +1,4 @@
 ud2
-lea (%ecx), %eax
+lea 12(%eax), %edx
 leave
 

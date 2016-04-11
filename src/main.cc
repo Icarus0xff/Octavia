@@ -30,7 +30,7 @@ u_int32_t effective_address_32 = 0;
 u_int8_t eAddr_sreg = 0;
 u_int32_t linear_addr = 0;
 
-Reg greg[8] = { 0 };
+//Reg greg[8] = { 0 };
 u_int8_t immLen = 0;
 u_int8_t cpl = 0;
 Sreg ldtr = { 0 }, tr = { 0 };
