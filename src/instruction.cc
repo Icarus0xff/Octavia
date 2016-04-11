@@ -1,8 +1,6 @@
 #include "instruction.h"
 #include <cstdio>
 
-<<<<<<< HEAD
-=======
 void X86Instruction::Instruction::exec_lea()
 {
   if (modrm_sib.is_rm_a_reg)
@@ -36,37 +34,26 @@ void X86Instruction::Instruction::exec_lea()
     }
 }
 
->>>>>>> dev
 void X86Instruction::Instruction::dec_opcode()
 {
   switch(opcode[0])
     {
-<<<<<<< HEAD
     case 0x8D:
-      modrm_sib = ModrmSib(curinst);     
+      modrm_sib = ModrmSib(curinst);    
+      exec_lea();
       break;
     default:
       printf("#UD\n");
       return;
     }
-=======
-    case 0x8d:
-      modrm_sib = ModrmSib(curinst);
-      exec_lea();
-    }
-  return;
->>>>>>> dev
 }
 
 void X86Instruction::Instruction::exec_inst()
 {
-<<<<<<< HEAD
   if (!prefix.is_opbyte2)
     {
       dec_opcode();
+      return;
     }
-=======
-  dec_opcode();
-  return;
->>>>>>> dev
+
 }
