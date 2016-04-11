@@ -2,6 +2,7 @@
 #define CPUEMULATOR_INSTRUCTION_H_
 #include <cstdlib>
 #include <iostream>
+#include <vector>
 #include "__type.hh"
 #include "global.h"
 
@@ -10,9 +11,6 @@ using namespace Enum;
 
 namespace X86Instruction
 {
-
-  
-
   class InstructionPrefix
   {
   public:
@@ -23,15 +21,15 @@ namespace X86Instruction
     //group 2
     CpuRegisterType::u8 seg;
     //group 3
-    bool op;
+    bool is_opsize16;
     //group 4
-    bool addr;
+    bool is_addrsize16;
 
     bool is_opbyte2;
-    InstructionPrefix() :lock(0), rep(0), repne(0), seg(6), op(0), addr(0), is_opbyte2(0) {};
+    InstructionPrefix() :lock(0), rep(0), repne(0), seg(6), is_opsize16(0), is_addrsize16(0), is_opbyte2(0) {};
 
 
-    InstructionPrefix(const CpuRegisterType::Byte * curbyte) :lock(0), rep(0), repne(0), seg(6), op(0), addr(0), is_opbyte2(0)
+    InstructionPrefix(const CpuRegisterType::Byte * curbyte) :lock(0), rep(0), repne(0), seg(6), is_opsize16(0), is_addrsize16(1), is_opbyte2(0)
     {
       for (int i = 0; i < 3; ++i)
 	{
@@ -65,10 +63,10 @@ namespace X86Instruction
 	      seg = enum_GS;
 	      break;
 	    case 0x66: //op-size
-	      op = true;
+	      is_opsize16 = true;
 	      break;
 	    case 0x67: // addr
-	      addr = true;
+	      is_addrsize16 = true;
 	      break;
 	    case 0x0F:
 	      is_opbyte2 = true;
@@ -84,7 +82,7 @@ namespace X86Instruction
 
     void print_status()
     {
-      printf("print prifix: %d, %d, %d, %d, %d, %d, %d\n", lock, rep, repne, seg, op, addr, is_opbyte2);
+      printf("print prifix: lock: %d, rep: %d, repne: %d, seg: %d, op: %d, addr: %d, is_opbyte2: %d\n", lock, rep, repne, seg, is_opsize16, is_addrsize16, is_opbyte2);
     }
   };
 
@@ -98,19 +96,22 @@ namespace X86Instruction
     u_int16_t effective_address_16;
     u_int32_t effective_address_32;
     u_int8_t effective_addr_seg_reg;
+    u_int8_t reg_dest;
+    bool is_rm_a_reg;
     ModrmSib() = default;
 
-    ModrmSib(const CpuRegisterType::Byte * cur) : modrm(0), sib(0), is_address_size16(true), effective_address_16(0), effective_addr_seg_reg(6)
+    ModrmSib(const CpuRegisterType::Byte * cur) : modrm(0), sib(0), is_address_size16(true), effective_address_16(0), effective_address_32(0), effective_addr_seg_reg(0), reg_dest(0), is_rm_a_reg(false)
     {
-      modrm = *cur++;
+      modrm = *cur;
+      cur++;
 
       if (is_address_size16)
 	{
 	  auto mod = modrm >> 6;
-	  auto rm = (modrm >> 3) & 0x7;
-	  auto reg = modrm & 0x7;
+	  auto reg = (modrm >> 3) & 0x7;
+	  auto rm = modrm & 0x7;
+	  reg_dest = reg;
 	  auto disp = 0;
-	  auto is_rm_a_reg = false;
 	  switch (mod)
 	    {
 	    case 0:
@@ -196,12 +197,13 @@ namespace X86Instruction
   private:
     const CpuRegisterType::Byte * curinst;
     InstructionPrefix prefix;
-    CpuRegisterType::Byte opcode[3];
+    //CpuRegisterType::Byte opcode[3];
+    std::vector<CpuRegisterType::Byte> opcode{3}; 
     ModrmSib modrm_sib;
   public:
     
     Instruction() = default;
-    Instruction(const CpuRegisterType::Byte * cur) : curinst(0), prefix(), modrm_sib(), opcode{ 0 }
+    Instruction(const CpuRegisterType::Byte * cur) : curinst(0), prefix(), opcode{3}, modrm_sib()
     {
       curinst = cur;
       prefix = InstructionPrefix(curinst);
@@ -236,6 +238,8 @@ namespace X86Instruction
 
     void dec_opcode();
     void exec_inst();
+
+    void exec_lea();
 
   };
 }

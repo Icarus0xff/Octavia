@@ -1,9 +1,4 @@
 ud2
-aaa
-aad
-aaa
-aad
-aad
-aaa
+lea 12(%eax), %edx
 leave
 
