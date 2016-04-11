@@ -20,15 +20,15 @@ namespace X86Instruction
     //group 2
     CpuRegisterType::u8 seg;
     //group 3
-    bool op;
+    bool is_opsize16;
     //group 4
-    bool addr;
+    bool is_addrsize16;
 
     bool is_opbyte2;
-    InstructionPrefix() :lock(0), rep(0), repne(0), seg(6), op(0), addr(0), is_opbyte2(0) {};
+    InstructionPrefix() :lock(0), rep(0), repne(0), seg(6), is_opsize16(0), is_addrsize16(0), is_opbyte2(0) {};
 
 
-    InstructionPrefix(const CpuRegisterType::Byte * curbyte) :lock(0), rep(0), repne(0), seg(6), op(0), addr(0), is_opbyte2(0)
+    InstructionPrefix(const CpuRegisterType::Byte * curbyte) :lock(0), rep(0), repne(0), seg(6), is_opsize16(0), is_addrsize16(0), is_opbyte2(0)
     {
       for (int i = 0; i < 3; ++i)
 	{
@@ -62,10 +62,10 @@ namespace X86Instruction
 	      seg = enum_GS;
 	      break;
 	    case 0x66: //op-size
-	      op = true;
+	      is_opsize16 = true;
 	      break;
 	    case 0x67: // addr
-	      addr = true;
+	      is_addrsize16 = true;
 	      break;
 	    case 0x0F:
 	      is_opbyte2 = true;
@@ -81,7 +81,7 @@ namespace X86Instruction
 
     void print_status()
     {
-      printf("print prifix: lock: %d, rep: %d, repne: %d, seg: %d, op: %d, addr: %d, is_opbyte2: %d\n", lock, rep, repne, seg, op, addr, is_opbyte2);
+      printf("print prifix: lock: %d, rep: %d, repne: %d, seg: %d, op: %d, addr: %d, is_opbyte2: %d\n", lock, rep, repne, seg, is_opsize16, is_addrsize16, is_opbyte2);
     }
   };
 
