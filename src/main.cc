@@ -1,5 +1,5 @@
-#include "global.h"
 #include "__type.hh"
+#include "global.h"
 
 using CpuRegisterType::Register;
 
@@ -10,15 +10,15 @@ std::vector<Register> GeneralReg::general_reg{8};
 
 u_int8_t *memBase = 0;
 u_int8_t *memBase_rtl = 0;
-Sreg sreg[6] = { 0 };
-u_int8_t *curInst = 0;  //current instruction location
-u_int8_t prefixLen = 0;  //prefix length
-u_int8_t prefix_seg = 0;  //segment override
-u_int8_t prefix_lock = 0;	//lock
-u_int8_t prefix_rep = 0;	//repeat
-u_int8_t prefix_2byte = 0;   //2byte opcode
-u_int8_t prefix_operand = 0; //operand size
-u_int8_t prefix_address = 0;  //address size
+Sreg sreg[6] = {0};
+u_int8_t *curInst = 0;       // current instruction location
+u_int8_t prefixLen = 0;      // prefix length
+u_int8_t prefix_seg = 0;     // segment override
+u_int8_t prefix_lock = 0;    // lock
+u_int8_t prefix_rep = 0;     // repeat
+u_int8_t prefix_2byte = 0;   // 2byte opcode
+u_int8_t prefix_operand = 0; // operand size
+u_int8_t prefix_address = 0; // address size
 
 Register ip_reg = Register();
 
@@ -30,25 +30,22 @@ u_int32_t effective_address_32 = 0;
 u_int8_t eAddr_sreg = 0;
 u_int32_t linear_addr = 0;
 
-//Reg greg[8] = { 0 };
+// Reg greg[8] = { 0 };
 u_int8_t immLen = 0;
 u_int8_t cpl = 0;
-Sreg ldtr = { 0 }, tr = { 0 };
-GlobalSreg gdtr = { 0 }, idtr = { 0 };
+Sreg ldtr = {0}, tr = {0};
+GlobalSreg gdtr = {0}, idtr = {0};
 u_int32_t eflags = 0;
-u_int32_t cr[5] = { 0 };
-u_int32_t dr[8] = { 0 };
+u_int32_t cr[5] = {0};
+u_int32_t dr[8] = {0};
 
-int
-main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   init();
   cpu_loop();
   return 0;
 }
 
-void init()
-{
+void init() {
   EAX = 0x0A;
   EBX = 0;
   ECX = 0;
@@ -80,12 +77,9 @@ void init()
   idtr.limit = 0xFFFF;
   print();
   mem_init();
-
 }
 
-
-void print()
-{
+void print() {
   DEBUG("EIP=0x%08x\n", EIP);
   DEBUG("EAX=0x%08x\n", EAX);
   DEBUG("EBX=0x%08x\n", EBX);
@@ -97,4 +91,3 @@ void print()
   DEBUG("EDI=0x%08x\n", EDI);
   DEBUG("EFLAGS=0x%08x\n", eflags);
 }
-
